@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from fastapi import FastAPI
 import requests
+from urllib.parse import urljoin
 
 app = FastAPI()
 
@@ -20,21 +21,44 @@ SENSORS = (
         "WiFi Devices",
         "sum(homeassistant_sensor_unit_clients{entity='sensor.gw_dhcp_leases_online'})",
         None,
-    )
+    ),
 )
 
 
 def get_prometheus_metric(query):
-    resp = requests.get(PROMETHEUS_URI + "/api/v1/query", params={"query": query})
+    resp = requests.get(urljoin(PROMETHEUS_URI, "/api/v1/query"), params={"query": query})
     data = resp.json()
     if "status" in data and data["status"] == "success":
         return data["data"]
 
 
 def get_open_status():
-    res = get_prometheus_metric('sum(homeassistant_input_boolean_state{entity="input_boolean.hackspace_open"})')
+    res = get_prometheus_metric(
+        'sum(homeassistant_input_boolean_state{entity="input_boolean.hackspace_open"})'
+    )
     if res:
         return int(res["result"][0]["value"][1]) > 0
+    return False
+
+
+def get_sensors():
+    result = {}
+    for typ, location, name, query, unit in SENSORS:
+        res = get_prometheus_metric(query)
+        if not res:
+            continue
+        if typ not in result:
+            result[typ] = []
+
+        sensor_data = {
+            "location": location,
+            "name": name,
+            "value": float(res["result"][0]["value"][1]),
+        }
+        if unit:
+            sensor_data["unit"] = unit
+        result[typ].append(sensor_data)
+    return result
 
 
 @app.get("/prom/{query}")
@@ -66,23 +90,7 @@ async def space_json():
         "state": {
             "open": get_open_status(),
         },
-        "sensors": {},
+        "sensors": get_sensors(),
     }
-
-    for typ, location, name, query, unit in SENSORS:
-        res = get_prometheus_metric(query)
-        if not res:
-            continue
-        if typ not in data["sensors"]:
-            data["sensors"][typ] = []
-
-        sensor_data = {
-            "location": location,
-            "name": name,
-            "value": float(res["result"][0]["value"][1]),
-        }
-        if unit:
-            sensor_data["unit"] = unit
-        data["sensors"][typ].append(sensor_data)
 
     return data
