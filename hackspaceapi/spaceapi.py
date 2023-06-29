@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from urllib.parse import urljoin
+import arrow
+import time
 
 from cachetools.func import ttl_cache
 from fastapi import APIRouter
 
 from .config import settings
 from .prometheus import get_prometheus_metric
+from .homeassistant import get_entity_state
 
 spaceapi = APIRouter()
 
@@ -27,14 +30,13 @@ SENSORS = (
     ),
 )
 
-@ttl_cache(ttl=60)
-def get_open_status():
-    res = get_prometheus_metric(
-        'sum(homeassistant_input_boolean_state{entity="input_boolean.hackspace_open"})'
-    )
-    if res:
-        return int(res["result"][0]["value"][1]) > 0
-    return False
+def get_state():
+    data = get_entity_state('input_boolean.hackspace_open')
+
+    return {
+        'open': data['state'] == 'on',
+        'lastchange': arrow.get(data['last_changed']).timestamp(),
+    }
 
 @ttl_cache(ttl=60)
 def get_sensors():
@@ -84,9 +86,7 @@ async def space_json():
                 "url": urljoin(settings.base_url, '/events.ics'),
             }
         },
-        "state": {
-            "open": get_open_status(),
-        },
+        "state": get_state(),
         "sensors": get_sensors(),
     }
 
