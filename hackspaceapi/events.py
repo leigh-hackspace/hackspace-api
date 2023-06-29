@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+import arrow
 
 from fastapi import APIRouter, Response
 from ics import Calendar, Event
@@ -8,7 +8,7 @@ from .homeassistant import call_homeassistant
 events = APIRouter()
 
 
-def get_calendar_events(start=datetime.utcnow(), end=datetime.utcnow() + timedelta(30)):
+def get_calendar_events(start=arrow.utcnow(), end=arrow.utcnow().shift(days=30)):
     calendars = call_homeassistant("/api/calendars")
     entities = [cal["entity_id"] for cal in calendars]
 

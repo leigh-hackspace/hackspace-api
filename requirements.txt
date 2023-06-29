@@ -2,3 +2,4 @@ fastapi[all]
 requests
 cachetools
 ics
+arrow

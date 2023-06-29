@@ -22,5 +22,6 @@ def call_homeassistant(endpoint, **params) -> list:
     if resp.ok:
         return resp.json()
 
+
 def get_entity_state(entity_id):
-    return call_homeassistant('/api/states/{0}'.format(entity_id))
+    return call_homeassistant("/api/states/{0}".format(entity_id))
