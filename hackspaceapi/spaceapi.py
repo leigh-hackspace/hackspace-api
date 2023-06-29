@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from fastapi import FastAPI
-import requests
-from urllib.parse import urljoin
+from fastapi import APIRouter
+from .prometheus import get_prometheus_metric
+from cachetools.func import ttl_cache
 
-app = FastAPI()
+spaceapi = APIRouter()
 
-PROMETHEUS_URI = "http://10.3.1.30:9090"
 
 SENSORS = (
     (
@@ -24,14 +23,7 @@ SENSORS = (
     ),
 )
 
-
-def get_prometheus_metric(query):
-    resp = requests.get(urljoin(PROMETHEUS_URI, "/api/v1/query"), params={"query": query})
-    data = resp.json()
-    if "status" in data and data["status"] == "success":
-        return data["data"]
-
-
+@ttl_cache(ttl=60)
 def get_open_status():
     res = get_prometheus_metric(
         'sum(homeassistant_input_boolean_state{entity="input_boolean.hackspace_open"})'
@@ -40,7 +32,7 @@ def get_open_status():
         return int(res["result"][0]["value"][1]) > 0
     return False
 
-
+@ttl_cache(ttl=60)
 def get_sensors():
     result = {}
     for typ, location, name, query, unit in SENSORS:
@@ -61,12 +53,7 @@ def get_sensors():
     return result
 
 
-@app.get("/prom/{query}")
-async def prom(query):
-    return get_prometheus_metric(query)
-
-
-@app.get("/space.json")
+@spaceapi.get("/space.json")
 async def space_json():
     data = {
         "api": "0.13",
