@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from urllib.parse import urljoin
-import arrow
 import time
+from urllib.parse import urljoin
 
+import arrow
 from cachetools.func import ttl_cache
 from fastapi import APIRouter
 
 from .config import settings
-from .prometheus import get_prometheus_metric
 from .homeassistant import get_entity_state
+from .prometheus import get_prometheus_metric
 
 spaceapi = APIRouter()
 
@@ -30,7 +30,7 @@ SENSORS = (
     ),
 )
 
-def get_state():
+def get_state() -> dict:
     data = get_entity_state('input_boolean.hackspace_open')
 
     return {
@@ -39,7 +39,7 @@ def get_state():
     }
 
 @ttl_cache(ttl=60)
-def get_sensors():
+def get_sensors() -> dict:
     result = {}
     for typ, location, name, query, unit in SENSORS:
         res = get_prometheus_metric(query)

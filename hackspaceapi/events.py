@@ -1,5 +1,6 @@
-import arrow
+from typing import List
 
+import arrow
 from fastapi import APIRouter, Response
 from ics import Calendar, Event
 
@@ -8,18 +9,18 @@ from .homeassistant import call_homeassistant
 events = APIRouter()
 
 
-def get_calendar_events(start=arrow.utcnow(), end=arrow.utcnow().shift(days=30)):
+def get_calendar_events(start=arrow.utcnow(), end=arrow.utcnow().shift(days=30)) -> List:
     calendars = call_homeassistant("/api/calendars")
-    entities = [cal["entity_id"] for cal in calendars]
+    if calendars:
+        entities = [cal["entity_id"] for cal in calendars]
 
-    events = []
-    for calendar in entities:
-        data = call_homeassistant(
-            "/api/calendars/{0}".format(calendar), start=start, end=end
-        )
-        events.extend(data)
+        events = []
+        for calendar in entities:
+            data = call_homeassistant("/api/calendars/{0}".format(calendar), start=start, end=end)
+            events.extend(data)
 
-    return events
+        return events
+    return []
 
 
 @events.get("/events")
