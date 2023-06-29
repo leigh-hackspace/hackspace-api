@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-from fastapi import APIRouter
-from .prometheus import get_prometheus_metric
+from urllib.parse import urljoin
+
 from cachetools.func import ttl_cache
+from fastapi import APIRouter
+
+from .config import settings
+from .prometheus import get_prometheus_metric
 
 spaceapi = APIRouter()
 
@@ -74,6 +78,12 @@ async def space_json():
             "facebook": "https://www.facebook.com/groups/leighhackspace/",
         },
         "issue_report_channels": ["email"],
+        "feeds": {
+            "calendar": {
+                "type": "ical",
+                "url": urljoin(settings.base_url, '/events.ics'),
+            }
+        },
         "state": {
             "open": get_open_status(),
         },
