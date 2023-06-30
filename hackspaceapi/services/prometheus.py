@@ -3,7 +3,7 @@ from urllib.parse import urljoin
 
 import requests
 
-from .config import settings
+from hackspaceapi.config import settings
 
 
 def get_prometheus_metric(query: str) -> Optional[Dict]:

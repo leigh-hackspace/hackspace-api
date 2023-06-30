@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 import requests
 from cachetools.func import ttl_cache
 
-from .config import settings
+from hackspaceapi.config import settings
 
 session = requests.session()
 session.headers = {

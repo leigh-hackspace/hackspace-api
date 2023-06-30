@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-import time
 from urllib.parse import urljoin
 
 import arrow
@@ -7,10 +5,12 @@ from cachetools.func import ttl_cache
 from fastapi import APIRouter
 
 from .config import settings
-from .homeassistant import get_entity_state
+from .services.homeassistant import get_entity_state
 
 spaceapi = APIRouter()
 
+# Sensors to export to the Space API
+# entity_id, override_name
 SENSORS = (
     ('sensor.gw_dhcp_leases_online', 'WiFi Clients'),
     ('sensor.bluetooth_proxy_temperature', 'Rack 1 Temperature'),

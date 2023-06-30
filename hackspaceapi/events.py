@@ -4,7 +4,7 @@ import arrow
 from fastapi import APIRouter, Response
 from ics import Calendar, Event
 
-from .homeassistant import call_homeassistant
+from .services.homeassistant import call_homeassistant
 
 events = APIRouter()
 
