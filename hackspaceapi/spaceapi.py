@@ -8,30 +8,17 @@ from fastapi import APIRouter
 
 from .config import settings
 from .homeassistant import get_entity_state
-from .prometheus import get_prometheus_metric
 
 spaceapi = APIRouter()
 
-
 SENSORS = (
-    (
-        "temperature",
-        "Rack 1",
-        "Average Temperature",
-        "round(avg(homeassistant_sensor_temperature_celsius) + 273.15)",
-        "K",
-    ),
-    (
-        "network_connections",
-        "Hackspace",
-        "WiFi Devices",
-        "sum(homeassistant_sensor_unit_clients{entity='sensor.gw_dhcp_leases_online'})",
-        None,
-    ),
+    ('sensor.gw_dhcp_leases_online', 'WiFi Clients'),
+    ('sensor.bluetooth_proxy_temperature', 'Rack 1 Temperature'),
+    ('weather.forecast_leigh_hackspace', 'External Temperature')
 )
 
 def get_state() -> dict:
-    data = get_entity_state('input_boolean.hackspace_open')
+    data = get_entity_state(settings.hackspace_open_entity)
 
     return {
         'open': data['state'] == 'on',
@@ -40,24 +27,46 @@ def get_state() -> dict:
 
 @ttl_cache(ttl=60)
 def get_sensors() -> dict:
-    result = {}
-    for typ, location, name, query, unit in SENSORS:
-        res = get_prometheus_metric(query)
-        if not res:
-            continue
-        if typ not in result:
-            result[typ] = []
+    results = {}
+    for sensor, override_name in SENSORS:
+        data = get_entity_state(sensor)
 
-        sensor_data = {
-            "location": location,
-            "name": name,
-            "value": float(res["result"][0]["value"][1]),
-        }
-        if unit:
-            sensor_data["unit"] = unit
-        result[typ].append(sensor_data)
-    return result
+        # Temperature sensor
+        if ('device_class' in data['attributes'] and data['attributes']['device_class'] == 'temperature') or 'temperature' in data['attributes']:
 
+            if 'temperature' not in results:
+                results['temperature'] = []
+
+            # Handle entities with temp attributes
+            if 'temperature' in data['attributes']:
+                value = float(data['attributes']['temperature'])
+                unit_val = data['attributes']['temperature_unit']
+            else:
+                value = float(data['state'])
+                unit_val = data['attributes']['unit_of_measurement']
+
+            results['temperature'].append({
+                'value': value,
+                'unit': unit_val,
+                'location': override_name or data['attributes']['friendly_name']
+            })
+
+        # Network connections
+        elif 'unit_of_measurement' in data['attributes'] and data['attributes']['unit_of_measurement'] == 'clients':
+
+            if 'network_connections' not in results:
+                results['network_connections'] = []
+
+            results['network_connections'].append({
+                'value': int(data['state']),
+                'location': override_name or data['attributes']['friendly_name']
+            })
+
+        else:
+            # Eh?
+            print(data)
+
+    return results
 
 @spaceapi.get("/space.json")
 async def space_json():
