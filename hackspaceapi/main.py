@@ -11,3 +11,8 @@ app = FastAPI()
 
 app.include_router(spaceapi)
 app.include_router(events)
+
+
+@app.get("/health")
+def health():
+    return {"health": "ok"}
