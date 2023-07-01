@@ -57,8 +57,13 @@ def get_sensors() -> dict:
             if 'network_connections' not in results:
                 results['network_connections'] = []
 
+            if data['state'] == 'unavailable':
+                state = 0
+            else:
+                state = int(data['state'])
+            
             results['network_connections'].append({
-                'value': int(data['state']),
+                'value': state,
                 'location': override_name or data['attributes']['friendly_name']
             })
 
