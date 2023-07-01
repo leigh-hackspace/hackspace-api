@@ -43,4 +43,4 @@ async def get_events_ics():
         )
         cal.events.add(evt)
 
-    return Response(content=cal.serialize())
+    return Response(content=cal.serialize(), media_type="text/calendar")
