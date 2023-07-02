@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from hackspaceapi import VERSION
+
 from .events import events
 from .spaceapi import spaceapi
 

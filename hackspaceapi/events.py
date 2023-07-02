@@ -1,11 +1,14 @@
+from datetime import datetime
 from enum import Enum
 from typing import List, Literal
-from datetime import datetime
+
 import arrow
 from fastapi import APIRouter, Response
 from ics import Calendar, Event
 from ics.grammar.parse import ContentLine
+
 from hackspaceapi import VERSION
+
 from .config import settings
 from .services.homeassistant import call_homeassistant
 
