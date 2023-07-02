@@ -73,7 +73,7 @@ def get_sensors() -> dict:
 
     return results
 
-@spaceapi.get("/space.json")
+@spaceapi.get("/space.json", description='Returns a SpaceAPI JSON supporting v13 and v14 of the schema', tags=['SpaceAPI'])
 async def space_json():
     data = {
         "api": "0.13",
@@ -82,10 +82,10 @@ async def space_json():
         "logo": "https://raw.githubusercontent.com/leigh-hackspace/logos-graphics-assets/master/logo/rose_logo.svg",
         "url": "http://leighhack.org",
         "location": {
-            "address": "Unit 3.14, 3rd Floor, Leigh Spinners Mill, Park Lane, Leigh, WN7 2LB, United Kingdom",
-            "lat": 53.493012,
-            "lon": -2.493010,
-            "timezone": "Europe/London",
+            "address": settings.hackspace_address,
+            "lat": settings.hackspace_address_lat,
+            "lon": settings.hackspace_address_lon,
+            "timezone": settings.hackspace_timezone,
         },
         "contact": {
             "email": "info@leighhack.org",

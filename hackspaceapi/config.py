@@ -6,7 +6,14 @@ class Settings(BaseSettings):
     prometheus_instance: str = "http://localhost:9090"
     homeassistant_instance: str = "http://localhost:8123"
     homeassistant_token: str
-    hackspace_open_entity: str = "input_boolean.hackspace_open"
 
+    hackspace_address: str = "Unit 3.14, 3rd Floor, Leigh Spinners Mill, Park Lane, Leigh, WN7 2LB, United Kingdom"
+    hackspace_address_lat: float = 53.493012
+    hackspace_address_lon: float = -2.493010
+    hackspace_timezone: str = "Europe/London"
+
+    hackspace_open_entity: str = "input_boolean.hackspace_open"
+    hackspace_public_calendar: str = "calendar.public_events"
+    hackspace_member_calendar: str = "calendar.member_events"
 
 settings = Settings()

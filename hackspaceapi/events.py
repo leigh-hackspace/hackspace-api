@@ -1,38 +1,58 @@
-from typing import List
-
+from enum import Enum
+from typing import List, Literal
+from datetime import datetime
 import arrow
 from fastapi import APIRouter, Response
 from ics import Calendar, Event
-
+from ics.grammar.parse import ContentLine
+from hackspaceapi import VERSION
+from .config import settings
 from .services.homeassistant import call_homeassistant
 
 events = APIRouter()
 
 
-def get_calendar_events(start=arrow.utcnow(), end=arrow.utcnow().shift(days=30)) -> List:
-    calendars = call_homeassistant("/api/calendars")
-    if calendars:
-        entities = [cal["entity_id"] for cal in calendars]
+class CalendarType(str, Enum):
+    public = (settings.hackspace_public_calendar,)
+    members = settings.hackspace_member_calendar
 
-        events = []
-        for calendar in entities:
-            data = call_homeassistant("/api/calendars/{0}".format(calendar), start=start, end=end)
-            events.extend(data)
 
-        return events
+def get_calendar_events(start: datetime, end: datetime, calendar: str) -> List:
+    print(call_homeassistant("/api/calendars"))
+    data = call_homeassistant("/api/calendars/{0}".format(calendar.value), start=start, end=end)
+    if data:
+        for event in data:
+            event["calendar"] = calendar
+        return data
     return []
 
 
-@events.get("/events")
-async def get_events():
-    return get_calendar_events()
+@events.get(
+    "/events",
+    description="Returns a list of upcoming events in a JSON format",
+    tags=["Events"],
+)
+async def get_events(
+    start: datetime | None = arrow.utcnow().datetime,
+    end: datetime | None = arrow.utcnow().shift(days=30).datetime,
+    calendar: Literal["public", "members"] = "public",
+):
+    return get_calendar_events(start, end, CalendarType[calendar])
 
 
-@events.get("/events.ics")
-async def get_events_ics():
-    data = get_calendar_events()
+@events.get(
+    "/events.ics",
+    description="Returns a list of upcoming events in a iCal format",
+    tags=["Events"],
+)
+async def get_events_ics(
+    start: datetime | None = arrow.utcnow().datetime,
+    end: datetime | None = arrow.utcnow().shift(days=30).datetime,
+    calendar: Literal["public", "members"] = "public",
+):
+    data = get_calendar_events(start, end, CalendarType[calendar])
 
-    cal = Calendar()
+    cal = Calendar(creator="Hackspace API {0}".format(VERSION))
     for event in data:
         evt = Event(
             event["summary"],
@@ -40,6 +60,7 @@ async def get_events_ics():
             end=event["end"]["dateTime"],
             description=event["description"],
             uid=event["uid"],
+            location=settings.hackspace_address,
         )
         cal.events.add(evt)
 
