@@ -16,4 +16,6 @@ class Settings(BaseSettings):
     hackspace_public_calendar: str = "calendar.public_events"
     hackspace_member_calendar: str = "calendar.member_events"
 
+    sensors_pressure_enabled: bool = False
+
 settings = Settings()

@@ -23,7 +23,7 @@ def get_state() -> dict:
 
     return {
         'open': data['state'] == 'on',
-        'lastchange': arrow.get(data['last_changed']).timestamp(),
+        'lastchange': int(arrow.get(data['last_changed']).timestamp()),
     }
 
 @ttl_cache(ttl=60)
@@ -49,7 +49,8 @@ def get_sensors() -> dict:
             results['temperature'].append({
                 'value': value,
                 'unit': unit_val,
-                'location': override_name or data['attributes']['friendly_name']
+                'location': override_name or data['attributes']['friendly_name'],
+                'lastchange': int(arrow.get(data['last_changed']).timestamp()),
             })
 
         # Humidity sensor
@@ -68,7 +69,8 @@ def get_sensors() -> dict:
             results['humidity'].append({
                 'value': value,
                 'unit': unit_val,
-                'location': override_name or data['attributes']['friendly_name']
+                'location': override_name or data['attributes']['friendly_name'],
+                'lastchange': int(arrow.get(data['last_changed']).timestamp()),
             })
 
         # Pressure sensor
@@ -84,11 +86,13 @@ def get_sensors() -> dict:
                 value = float(data['state'])
                 unit_val = data['attributes']['unit_of_measurement']
 
-            results['barometer'].append({
-                'value': value,
-                'unit': unit_val,
-                'location': override_name or data['attributes']['friendly_name']
-            })
+            if settings.sensors_pressure_enabled:
+                results['barometer'].append({
+                    'value': value,
+                    'unit': unit_val,
+                    'location': override_name or data['attributes']['friendly_name'],
+                    'lastchange': int(arrow.get(data['last_changed']).timestamp()),
+                })
 
         # Network connections
         if 'unit_of_measurement' in data['attributes'] and data['attributes']['unit_of_measurement'] == 'clients':
@@ -103,7 +107,8 @@ def get_sensors() -> dict:
             
             results['network_connections'].append({
                 'value': state,
-                'location': override_name or data['attributes']['friendly_name']
+                'location': override_name or data['attributes']['friendly_name'],
+                'lastchange': int(arrow.get(data['last_changed']).timestamp()),
             })
 
     return results
