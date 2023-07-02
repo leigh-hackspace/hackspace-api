@@ -4,11 +4,16 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from hackspaceapi import VERSION
 from .events import events
 from .spaceapi import spaceapi
 
 logging.basicConfig(level=logging.DEBUG)
-app = FastAPI()
+app = FastAPI(
+    title='HackspaceAPI',
+    description='A simple, public API for Leigh Hackspace.',
+    version=VERSION
+)
 
 app.add_middleware(
     CORSMiddleware,
