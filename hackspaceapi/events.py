@@ -5,7 +5,6 @@ from typing import List, Literal
 import arrow
 from fastapi import APIRouter, Response
 from ics import Calendar, Event
-from ics.grammar.parse import ContentLine
 
 from hackspaceapi import VERSION
 
