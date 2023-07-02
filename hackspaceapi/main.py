@@ -10,9 +10,9 @@ from .spaceapi import spaceapi
 
 logging.basicConfig(level=logging.DEBUG)
 app = FastAPI(
-    title='HackspaceAPI',
-    description='A simple, public API for Leigh Hackspace.',
-    version=VERSION
+    title="HackspaceAPI",
+    description="A simple, public API for Leigh Hackspace.",
+    version=VERSION,
 )
 
 app.add_middleware(
@@ -27,6 +27,10 @@ app.include_router(spaceapi)
 app.include_router(events)
 
 
-@app.get("/health")
+@app.get(
+    "/health",
+    description="Healthcheck endpoint to ensure the API is running correctly",
+    tags=["Health"],
+)
 def health():
     return {"health": "ok"}
