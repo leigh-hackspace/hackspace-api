@@ -13,8 +13,9 @@ spaceapi = APIRouter()
 # entity_id, override_name
 SENSORS = (
     ('sensor.gw_dhcp_leases_online', 'WiFi Clients'),
-    ('sensor.bluetooth_proxy_temperature', 'Rack 1 Temperature'),
-    ('weather.forecast_leigh_hackspace', 'External Temperature')
+    ('sensor.bluetooth_proxy_temperature', 'Rack 1'),
+    ('sensor.bluetooth_proxy_humidity', 'Rack 1'),
+    ('weather.forecast_leigh_hackspace', 'Outside')
 )
 
 def get_state() -> dict:
@@ -31,9 +32,9 @@ def get_sensors() -> dict:
     for sensor, override_name in SENSORS:
         data = get_entity_state(sensor)
 
+        print(data)
         # Temperature sensor
         if ('device_class' in data['attributes'] and data['attributes']['device_class'] == 'temperature') or 'temperature' in data['attributes']:
-
             if 'temperature' not in results:
                 results['temperature'] = []
 
@@ -51,8 +52,46 @@ def get_sensors() -> dict:
                 'location': override_name or data['attributes']['friendly_name']
             })
 
+        # Humidity sensor
+        if ('device_class' in data['attributes'] and data['attributes']['device_class'] == 'humidity') or 'humidity' in data['attributes']:
+            if 'humidity' not in results:
+                results['humidity'] = []
+
+            # Handle entities with humidity attributes
+            if 'humidity' in data['attributes']:
+                value = float(data['attributes']['humidity'])
+                unit_val = '%'  # Humidity attributes generally don't have a unit value, assume %
+            else:
+                value = float(data['state'])
+                unit_val = data['attributes']['unit_of_measurement']
+
+            results['humidity'].append({
+                'value': value,
+                'unit': unit_val,
+                'location': override_name or data['attributes']['friendly_name']
+            })
+
+        # Pressure sensor
+        if ('device_class' in data['attributes'] and data['attributes']['device_class'] == 'pressure') or 'pressure' in data['attributes']:
+            if 'barometer' not in results:
+                results['barometer'] = []
+
+            # Handle entities with temp attributes
+            if 'pressure' in data['attributes']:
+                value = float(data['attributes']['pressure'])
+                unit_val = data['attributes']['pressure_unit']
+            else:
+                value = float(data['state'])
+                unit_val = data['attributes']['unit_of_measurement']
+
+            results['barometer'].append({
+                'value': value,
+                'unit': unit_val,
+                'location': override_name or data['attributes']['friendly_name']
+            })
+
         # Network connections
-        elif 'unit_of_measurement' in data['attributes'] and data['attributes']['unit_of_measurement'] == 'clients':
+        if 'unit_of_measurement' in data['attributes'] and data['attributes']['unit_of_measurement'] == 'clients':
 
             if 'network_connections' not in results:
                 results['network_connections'] = []
@@ -66,10 +105,6 @@ def get_sensors() -> dict:
                 'value': state,
                 'location': override_name or data['attributes']['friendly_name']
             })
-
-        else:
-            # Eh?
-            print(data)
 
     return results
 
