@@ -32,7 +32,6 @@ def get_sensors() -> dict:
     for sensor, override_name in SENSORS:
         data = get_entity_state(sensor)
 
-        print(data)
         # Temperature sensor
         if ('device_class' in data['attributes'] and data['attributes']['device_class'] == 'temperature') or 'temperature' in data['attributes']:
             if 'temperature' not in results:
