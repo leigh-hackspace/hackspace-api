@@ -6,16 +6,23 @@ from fastapi import APIRouter
 
 from .config import settings
 from .services.homeassistant import get_entity_state
+from .services.prometheus import get_prometheus_metric
 
 spaceapi = APIRouter()
 
-# Sensors to export to the Space API
+# Homeassistant Sensors to export to the Space API
 # entity_id, override_name
-SENSORS = (
+HOMEASSISTANT_SENSORS = (
     ('sensor.gw_dhcp_leases_online', 'WiFi Clients'),
     ('sensor.bluetooth_proxy_temperature', 'Rack 1'),
     ('sensor.bluetooth_proxy_humidity', 'Rack 1'),
     ('weather.forecast_leigh_hackspace', 'Outside')
+)
+
+# Prometheus queries to export to the Space API
+# query, override_name, type
+PROMETHEUS_SENSORS = (
+    ('gocardless_members_count{}', 'Active Members', 'total_member_count'),
 )
 
 def get_state() -> dict:
@@ -29,7 +36,7 @@ def get_state() -> dict:
 @ttl_cache(ttl=60)
 def get_sensors() -> dict:
     results = {}
-    for sensor, override_name in SENSORS:
+    for sensor, override_name in HOMEASSISTANT_SENSORS:
         data = get_entity_state(sensor)
 
         # Temperature sensor
@@ -108,6 +115,19 @@ def get_sensors() -> dict:
                 'value': state,
                 'location': override_name or data['attributes']['friendly_name'],
                 'lastchange': int(arrow.get(data['last_changed']).timestamp()),
+            })
+
+    for query, override_name, sensor_type in PROMETHEUS_SENSORS:
+        data = get_prometheus_metric(query)
+
+        if sensor_type not in results:
+            results[sensor_type] = []
+
+        if sensor_type == 'total_member_count':
+            results['total_member_count'].append({
+                'value': data['result'][0]['value'][1],
+                'name': override_name,
+                'lastchange': int(data['result'][0]['value'][0]),
             })
 
     return results
