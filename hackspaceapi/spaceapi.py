@@ -125,7 +125,7 @@ def get_sensors() -> dict:
 
         if sensor_type == 'total_member_count':
             results['total_member_count'].append({
-                'value': data['result'][0]['value'][1],
+                'value': int(data['result'][0]['value'][1]),
                 'name': override_name,
                 'lastchange': int(data['result'][0]['value'][0]),
             })
