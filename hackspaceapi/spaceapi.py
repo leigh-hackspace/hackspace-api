@@ -1,3 +1,4 @@
+import logging
 from urllib.parse import urljoin
 
 import arrow
@@ -20,7 +21,7 @@ HOMEASSISTANT_SENSORS = (
 )
 
 # Prometheus queries to export to the Space API
-# query, override_name, type
+# query, name, sensor type
 PROMETHEUS_SENSORS = (
     ('gocardless_members_count{}', 'Active Members', 'total_member_count'),
 )
@@ -38,6 +39,9 @@ def get_sensors() -> dict:
     results = {}
     for sensor, override_name in HOMEASSISTANT_SENSORS:
         data = get_entity_state(sensor)
+        if not data:
+            logging.warning('Call for {0} sensor returned an empty result, skipping'.format(override_name))
+            continue
 
         # Temperature sensor
         if ('device_class' in data['attributes'] and data['attributes']['device_class'] == 'temperature') or 'temperature' in data['attributes']:
@@ -117,8 +121,11 @@ def get_sensors() -> dict:
                 'lastchange': int(arrow.get(data['last_changed']).timestamp()),
             })
 
-    for query, override_name, sensor_type in PROMETHEUS_SENSORS:
+    for query, name, sensor_type in PROMETHEUS_SENSORS:
         data = get_prometheus_metric(query)
+        if not data:
+            logging.warning('Call for {0} sensor returned an empty result, skipping'.format(name))
+            continue
 
         if sensor_type not in results:
             results[sensor_type] = []
@@ -126,7 +133,7 @@ def get_sensors() -> dict:
         if sensor_type == 'total_member_count':
             results['total_member_count'].append({
                 'value': int(data['result'][0]['value'][1]),
-                'name': override_name,
+                'name': name,
                 'lastchange': int(data['result'][0]['value'][0]),
             })
 
