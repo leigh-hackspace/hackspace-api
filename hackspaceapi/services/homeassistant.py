@@ -1,3 +1,4 @@
+import logging
 from typing import Iterable, Optional
 from urllib.parse import urljoin
 
@@ -18,9 +19,15 @@ def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
     """
     Call a Homeassistant API endpoint and return the JSON if successful
     """
-    resp = session.get(urljoin(settings.homeassistant_instance, endpoint), params=params)
-    if resp.ok:
-        return resp.json()
+    url = urljoin(settings.homeassistant_instance, endpoint)
+    try:
+        resp = session.get(url, params=params)
+        if resp.ok:
+            return resp.json()
+    except requests.exceptions.RequestException as exc:
+        logging.error("Failed to call {0} - {1}".format(url, endpoint), exc)
+        pass
+    return None
 
 
 def get_entity_state(entity_id: str) -> Optional[Iterable]:

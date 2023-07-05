@@ -123,7 +123,7 @@ def get_sensors() -> dict:
 
     for query, name, sensor_type in PROMETHEUS_SENSORS:
         data = get_prometheus_metric(query)
-        if not data or len(data['results'] == 0):
+        if not data or 'result' not in data or len(data['result']) == 0:
             logging.warning('Call for {0} sensor returned an empty result, skipping'.format(name))
             continue
 
