@@ -34,4 +34,4 @@ app.include_router(events)
     tags=["Health"],
 )
 def health():
-    return {"health": "ok"}
+    return {"health": "ok", "versionn": VERSION}
