@@ -3,6 +3,8 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_client import make_asgi_app
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from hackspaceapi import VERSION
 
@@ -27,6 +29,12 @@ app.add_middleware(
 app.include_router(spaceapi)
 app.include_router(events)
 
+# Add prometheus asgi middleware to route /metrics requests
+metrics_app = make_asgi_app()
+app.mount("/metrics", metrics_app)
+
+# Add instrumentor for Prometheus
+Instrumentator().instrument(app).expose(app)
 
 @app.get(
     "/health",

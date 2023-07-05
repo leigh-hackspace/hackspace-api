@@ -4,6 +4,7 @@ from urllib.parse import urljoin
 
 import requests
 from cachetools.func import ttl_cache
+from prometheus_client import Summary
 
 from hackspaceapi.config import settings
 
@@ -13,8 +14,10 @@ session.headers = {
     "content-type": "application/json",
 }
 
+call_homeassistant_metrics = Summary('hackspaceapi_homeassistant_api_time', 'Summary of calls to the Home Assistant API')
 
 @ttl_cache(ttl=60)
+@call_homeassistant_metrics.time()
 def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
     """
     Call a Homeassistant API endpoint and return the JSON if successful
