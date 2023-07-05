@@ -1,7 +1,7 @@
-fastapi[all]
-requests
+fastapi[all]==0.98.0
+requests==2.31.0
 cachetools
-ics
-arrow
-prometheus_client
+ics==0.7.2
+arrow==1.2.3
+prometheus_client==0.17.0
 prometheus-fastapi-instrumentator==6.0.0
