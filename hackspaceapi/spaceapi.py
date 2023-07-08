@@ -28,11 +28,17 @@ PROMETHEUS_SENSORS = (
 
 def get_state() -> dict:
     data = get_entity_state(settings.hackspace_open_entity)
+    if data:
+        return {
+            'open': data['state'] == 'on',
+            'lastchange': int(arrow.get(data['last_changed']).timestamp()),
+        }
 
+    # We didn't get a valid response from Homeassistant, assume we're closed
     return {
-        'open': data['state'] == 'on',
-        'lastchange': int(arrow.get(data['last_changed']).timestamp()),
+        'open': False,
     }
+
 
 @ttl_cache(ttl=60)
 def get_sensors() -> dict:
