@@ -56,12 +56,18 @@ async def get_events_ics(
 
     cal = Calendar(creator="Hackspace API {0}".format(VERSION))
     for event in data:
+        # If its a recurring event, tag on the ID to the end of the UID
+        if "recurrence_id" in event and event["recurrence_id"]:
+            uid = event["uid"] + "-" + event["recurrence_id"]
+        else:
+            uid = event["uid"]
+
         evt = Event(
             event["summary"],
             begin=event["start"]["dateTime"],
             end=event["end"]["dateTime"],
             description=event["description"],
-            uid=event["uid"],
+            uid=uid,
             location=settings.hackspace_address,
         )
         cal.events.add(evt)
