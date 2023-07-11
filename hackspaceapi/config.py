@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     hackspace_address_lon: float = -2.493010
     hackspace_timezone: str = "Europe/London"
 
-    hackspace_open_entity: str = "input_boolean.hackspace_open"
+    hackspace_open_entity: str = "binary_sensor.hackspace_open_multi"
     hackspace_public_calendar: str = "calendar.public_events"
     hackspace_member_calendar: str = "calendar.member_events"
 
