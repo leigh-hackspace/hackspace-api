@@ -10,6 +10,7 @@ from hackspaceapi import VERSION
 
 from .events import events
 from .spaceapi import spaceapi
+from .doors import doors
 
 logging.basicConfig(level=logging.DEBUG)
 app = FastAPI(
@@ -28,6 +29,7 @@ app.add_middleware(
 
 app.include_router(spaceapi)
 app.include_router(events)
+app.include_router(doors, prefix='/doors')
 
 # Add prometheus asgi middleware to route /metrics requests
 metrics_app = make_asgi_app()
@@ -42,4 +44,4 @@ Instrumentator().instrument(app).expose(app)
     tags=["Health"],
 )
 def health():
-    return {"health": "ok", "versionn": VERSION}
+    return {"health": "ok", "version": VERSION}

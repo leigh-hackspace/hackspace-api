@@ -5,9 +5,14 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env")
 
     base_url: str = "http://localhost:8000"
+    
+    # External app config
     prometheus_instance: str = "http://prometheus:9090"
     homeassistant_instance: str = "http://homeassistant:8123"
     homeassistant_token: str
+    authentik_instance: str = "http://localhost:9000"
+    authentik_token: str
+    authentik_uid_attribute: str = 'leighhack.org/door_access_uid'
 
     hackspace_name: str = "Leigh Hackspace"
     hackspace_logo_url: str = "https://raw.githubusercontent.com/leigh-hackspace/logos-graphics-assets/master/logo/rose_logo.svg"
@@ -20,6 +25,8 @@ class Settings(BaseSettings):
     hackspace_open_entity: str = "binary_sensor.hackspace_open_multi"
     hackspace_public_calendar: str = "calendar.public_events"
     hackspace_member_calendar: str = "calendar.member_events"
+
+    hackspace_doors_allowed_group: str = 'Members'
 
     sensors_pressure_enabled: bool = False
 

@@ -3,7 +3,7 @@
 	python3 -m poetry install
 
 tests: .venv
-	HOMEASSISTANT_TOKEN='xxx' python3 -m poetry run pytest
+	AUTHENTIK_TOKEN='xxx' HOMEASSISTANT_TOKEN='xxx' python3 -m poetry run pytest
 
 update-cassettes: .venv
 	python3 -m poetry run pytest
