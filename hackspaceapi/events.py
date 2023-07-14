@@ -15,7 +15,7 @@ events = APIRouter()
 
 
 class CalendarType(str, Enum):
-    public = (settings.hackspace_public_calendar,)
+    public = settings.hackspace_public_calendar
     members = settings.hackspace_member_calendar
 
 
