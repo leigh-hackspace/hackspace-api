@@ -1,7 +1,9 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env")
+
     base_url: str = "http://localhost:8000"
     prometheus_instance: str = "http://localhost:9090"
     homeassistant_instance: str = "http://localhost:8123"
@@ -17,5 +19,6 @@ class Settings(BaseSettings):
     hackspace_member_calendar: str = "calendar.member_events"
 
     sensors_pressure_enabled: bool = False
+
 
 settings = Settings()
