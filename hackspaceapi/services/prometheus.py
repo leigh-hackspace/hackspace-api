@@ -21,6 +21,6 @@ def get_prometheus_metric(query: str) -> Optional[Dict]:
             if "status" in data and data["status"] == "success":
                 return data["data"]
     except requests.exceptions.RequestException as exc:
-        logging.error("Failed query Prometheus - {1}".format(url), exc)
+        logging.error("Failed query Prometheus - {0}: {1}", url, exc)
         pass
     return None
