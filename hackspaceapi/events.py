@@ -20,7 +20,6 @@ class CalendarType(str, Enum):
 
 
 def get_calendar_events(start: datetime, end: datetime, calendar: str) -> List:
-    print(call_homeassistant("/api/calendars"))
     data = call_homeassistant("/api/calendars/{0}".format(calendar.value), start=start, end=end)
     if data:
         for event in data:
