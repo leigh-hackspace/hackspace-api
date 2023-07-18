@@ -68,6 +68,7 @@ async def get_events_ics(
             description=event["description"],
             uid=uid,
             location=settings.hackspace_address,
+            geo=(settings.hackspace_address_lat, settings.hackspace_address_lon)
         )
         cal.events.add(evt)
 

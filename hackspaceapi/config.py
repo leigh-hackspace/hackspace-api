@@ -9,7 +9,10 @@ class Settings(BaseSettings):
     homeassistant_instance: str = "http://localhost:8123"
     homeassistant_token: str
 
-    hackspace_address: str = "Unit 3.14, 3rd Floor, Leigh Spinners Mill, Park Lane, Leigh, WN7 2LB, United Kingdom"
+    hackspace_name: str = "Leigh Hackspace"
+    hackspace_logo_url: str = "https://raw.githubusercontent.com/leigh-hackspace/logos-graphics-assets/master/logo/rose_logo.svg"
+    hackspace_website_url: str = "https://leighhack.org"
+    hackspace_address: str = "Leigh Hackspace, Unit 3.14, 3rd Floor, Leigh Spinners Mill, Park Lane, Leigh, WN7 2LB, United Kingdom"
     hackspace_address_lat: float = 53.493012
     hackspace_address_lon: float = -2.493010
     hackspace_timezone: str = "Europe/London"

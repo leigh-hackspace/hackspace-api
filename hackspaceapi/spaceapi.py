@@ -150,9 +150,9 @@ async def space_json():
     data = {
         "api": "0.13",
         "api_compatibility": ["14"],
-        "space": "Leigh Hackspace",
-        "logo": "https://raw.githubusercontent.com/leigh-hackspace/logos-graphics-assets/master/logo/rose_logo.svg",
-        "url": "http://leighhack.org",
+        "space": settings.hackspace_name,
+        "logo": settings.hackspace_logo_url,
+        "url": settings.hackspace_website_url,
         "location": {
             "address": settings.hackspace_address,
             "lat": settings.hackspace_address_lat,
