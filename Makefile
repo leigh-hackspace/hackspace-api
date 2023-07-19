@@ -1,5 +1,6 @@
 .venv:
-	poetry install
+	python3 -m pip install poetry
+	python3 -m poetry install
 
 tests: .venv
-	HOMEASSISTANT_TOKEN='xxx' poetry run pytest
+	HOMEASSISTANT_TOKEN='xxx' python3 -m poetry run pytest
