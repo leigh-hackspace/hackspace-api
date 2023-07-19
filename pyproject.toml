@@ -22,6 +22,7 @@ pydantic-settings = "2.0.2"
 pytest = "^7.4.0"
 spacedirectory = "^0.0.5"
 vcrpy = "^5.0.0"
+ruff = "^0.0.278"
 
 [build-system]
 requires = ["poetry-core"]
