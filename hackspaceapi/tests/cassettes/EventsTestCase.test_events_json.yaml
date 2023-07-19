@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/calendars/calendar.public_events
+  response:
+    body:
+      string: "[{\"start\":{\"dateTime\":\"2023-07-19T19:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-07-19T22:00:00+01:00\"},\"summary\":\"Code
+        Club\",\"description\":\"\",\"location\":null,\"uid\":\"2931d402-16be-11ee-bd81-000c2926e65c\",\"recurrence_id\":\"20230719T190000\",\"rrule\":\"FREQ=WEEKLY;UNTIL=20231227T190000;BYDAY=WE\"},{\"start\":{\"dateTime\":\"2023-07-22T12:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-07-22T17:00:00+01:00\"},\"summary\":\"Hackspace
+        Public Tours\",\"description\":\"Leigh Hackspace is non-profit membership
+        hackspace located in an former cotton mill now art's and heritage centre in
+        Leigh, Greater Manchester. \\n\\nOur mission is to foster a vibrant environment
+        that brings creators, tinkerers, crafters, and makers under one roof. Equipped
+        with the necessary tools and driven by a community rich in diverse skills
+        and passions, something is always going on!\\n\\nSaturdays are our tour days,
+        No pre-booking is required, just visit us with 15-20 minutes of your time
+        and see our space and what we do.\",\"location\":null,\"uid\":\"de0d9534-25f8-11ee-8c02-000c2926e65c\",\"recurrence_id\":\"20230722T120000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=SA\"},{\"start\":{\"dateTime\":\"2023-07-25T18:30:00+01:00\"},\"end\":{\"dateTime\":\"2023-07-25T20:30:00+01:00\"},\"summary\":\"Textile
+        Tuesday\",\"description\":\"Work on sewing, quilting, knitting, and crochet
+        projects.\\n\\nShare skills and tips in a creative, friendly, and supportive
+        environment.\\n\\nFree to Hackspace members, \xA33 for non-members.\",\"location\":null,\"uid\":\"b007c986-1ffc-11ee-b3f1-000c2926e65c\",\"recurrence_id\":\"20230725T183000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=TU\"},{\"start\":{\"dateTime\":\"2023-07-26T19:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-07-26T22:00:00+01:00\"},\"summary\":\"Code
+        Club\",\"description\":\"\",\"location\":null,\"uid\":\"2931d402-16be-11ee-bd81-000c2926e65c\",\"recurrence_id\":\"20230726T190000\",\"rrule\":\"FREQ=WEEKLY;UNTIL=20231227T190000;BYDAY=WE\"},{\"start\":{\"dateTime\":\"2023-07-29T12:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-07-29T17:00:00+01:00\"},\"summary\":\"Open
+        Day\",\"description\":\"Come down to Leigh Hackspace and see what we do, what
+        we offer, and how we may be interesting to you!\",\"location\":null,\"uid\":\"aade24a6-1966-11ee-858e-000c2926e65c\",\"recurrence_id\":null,\"rrule\":null},{\"start\":{\"dateTime\":\"2023-08-01T18:30:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-01T20:30:00+01:00\"},\"summary\":\"Textile
+        Tuesday\",\"description\":\"Work on sewing, quilting, knitting, and crochet
+        projects.\\n\\nShare skills and tips in a creative, friendly, and supportive
+        environment.\\n\\nFree to Hackspace members, \xA33 for non-members.\",\"location\":null,\"uid\":\"b007c986-1ffc-11ee-b3f1-000c2926e65c\",\"recurrence_id\":\"20230801T183000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=TU\"},{\"start\":{\"dateTime\":\"2023-08-02T19:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-02T22:00:00+01:00\"},\"summary\":\"Code
+        Club\",\"description\":\"\",\"location\":null,\"uid\":\"2931d402-16be-11ee-bd81-000c2926e65c\",\"recurrence_id\":\"20230802T190000\",\"rrule\":\"FREQ=WEEKLY;UNTIL=20231227T190000;BYDAY=WE\"},{\"start\":{\"dateTime\":\"2023-08-05T12:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-05T17:00:00+01:00\"},\"summary\":\"Hackspace
+        Public Tours\",\"description\":\"Leigh Hackspace is non-profit membership
+        hackspace located in an former cotton mill now art's and heritage centre in
+        Leigh, Greater Manchester. \\n\\nOur mission is to foster a vibrant environment
+        that brings creators, tinkerers, crafters, and makers under one roof. Equipped
+        with the necessary tools and driven by a community rich in diverse skills
+        and passions, something is always going on!\\n\\nSaturdays are our tour days,
+        No pre-booking is required, just visit us with 15-20 minutes of your time
+        and see our space and what we do.\",\"location\":null,\"uid\":\"de0d9534-25f8-11ee-8c02-000c2926e65c\",\"recurrence_id\":\"20230805T120000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=SA\"},{\"start\":{\"dateTime\":\"2023-08-08T18:30:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-08T20:30:00+01:00\"},\"summary\":\"Textile
+        Tuesday\",\"description\":\"Work on sewing, quilting, knitting, and crochet
+        projects.\\n\\nShare skills and tips in a creative, friendly, and supportive
+        environment.\\n\\nFree to Hackspace members, \xA33 for non-members.\",\"location\":null,\"uid\":\"b007c986-1ffc-11ee-b3f1-000c2926e65c\",\"recurrence_id\":\"20230808T183000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=TU\"},{\"start\":{\"dateTime\":\"2023-08-09T19:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-09T22:00:00+01:00\"},\"summary\":\"Code
+        Club\",\"description\":\"\",\"location\":null,\"uid\":\"2931d402-16be-11ee-bd81-000c2926e65c\",\"recurrence_id\":\"20230809T190000\",\"rrule\":\"FREQ=WEEKLY;UNTIL=20231227T190000;BYDAY=WE\"},{\"start\":{\"dateTime\":\"2023-08-12T12:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-12T17:00:00+01:00\"},\"summary\":\"Hackspace
+        Public Tours\",\"description\":\"Leigh Hackspace is non-profit membership
+        hackspace located in an former cotton mill now art's and heritage centre in
+        Leigh, Greater Manchester. \\n\\nOur mission is to foster a vibrant environment
+        that brings creators, tinkerers, crafters, and makers under one roof. Equipped
+        with the necessary tools and driven by a community rich in diverse skills
+        and passions, something is always going on!\\n\\nSaturdays are our tour days,
+        No pre-booking is required, just visit us with 15-20 minutes of your time
+        and see our space and what we do.\",\"location\":null,\"uid\":\"de0d9534-25f8-11ee-8c02-000c2926e65c\",\"recurrence_id\":\"20230812T120000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=SA\"},{\"start\":{\"dateTime\":\"2023-08-15T18:30:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-15T20:30:00+01:00\"},\"summary\":\"Textile
+        Tuesday\",\"description\":\"Work on sewing, quilting, knitting, and crochet
+        projects.\\n\\nShare skills and tips in a creative, friendly, and supportive
+        environment.\\n\\nFree to Hackspace members, \xA33 for non-members.\",\"location\":null,\"uid\":\"b007c986-1ffc-11ee-b3f1-000c2926e65c\",\"recurrence_id\":\"20230815T183000\",\"rrule\":\"FREQ=WEEKLY;BYDAY=TU\"},{\"start\":{\"dateTime\":\"2023-08-16T19:00:00+01:00\"},\"end\":{\"dateTime\":\"2023-08-16T22:00:00+01:00\"},\"summary\":\"Code
+        Club\",\"description\":\"\",\"location\":null,\"uid\":\"2931d402-16be-11ee-bd81-000c2926e65c\",\"recurrence_id\":\"20230816T190000\",\"rrule\":\"FREQ=WEEKLY;UNTIL=20231227T190000;BYDAY=WE\"}]"
+    headers:
+      Content-Length:
+      - '5999'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+      Server:
+      - Python/3.11 aiohttp/3.8.4
+    status:
+      code: 200
+      message: OK
+version: 1

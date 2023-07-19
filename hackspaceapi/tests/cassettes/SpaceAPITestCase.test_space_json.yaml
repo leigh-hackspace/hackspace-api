@@ -1,0 +1,146 @@
+interactions:
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/binary_sensor.hackspace_open_multi
+  response:
+    body:
+      string: '{"entity_id":"binary_sensor.hackspace_open_multi","state":"on","attributes":{"device_class":"opening","friendly_name":"Hackspace
+        Open?"},"last_changed":"2023-07-19T12:36:55.965048+00:00","last_updated":"2023-07-19T12:36:55.965048+00:00","context":{"id":"01H5Q2EJGVFXY3AHGXWP5M7AZF","parent_id":null,"user_id":null}}'
+    headers:
+      Content-Length:
+      - '315'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+      Server:
+      - Python/3.11 aiohttp/3.8.4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.gw_dhcp_leases_online
+  response:
+    body:
+      string: '{"entity_id":"sensor.gw_dhcp_leases_online","state":"13","attributes":{"state_class":"measurement","unit_of_measurement":"clients","icon":"mdi:ip-network-outline","friendly_name":"GW
+        DHCP Leases Online"},"last_changed":"2023-07-19T18:02:44.938286+00:00","last_updated":"2023-07-19T18:02:44.938286+00:00","context":{"id":"01H5QN35AA7S9NHEQJXJSZMAJJ","parent_id":null,"user_id":null}}'
+    headers:
+      Content-Length:
+      - '382'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+      Server:
+      - Python/3.11 aiohttp/3.8.4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.bluetooth_proxy_temperature
+  response:
+    body:
+      string: "{\"entity_id\":\"sensor.bluetooth_proxy_temperature\",\"state\":\"25.0\",\"attributes\":{\"state_class\":\"measurement\",\"unit_of_measurement\":\"\xB0C\",\"device_class\":\"temperature\",\"friendly_name\":\"Bluetooth
+        Proxy Temperature\"},\"last_changed\":\"2023-07-19T16:41:02.391079+00:00\",\"last_updated\":\"2023-07-19T16:41:02.391079+00:00\",\"context\":{\"id\":\"01H5QGDHNQJNQH128RCFBFPHA1\",\"parent_id\":null,\"user_id\":null}}"
+    headers:
+      Content-Length:
+      - '389'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+      Server:
+      - Python/3.11 aiohttp/3.8.4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.bluetooth_proxy_humidity
+  response:
+    body:
+      string: '{"entity_id":"sensor.bluetooth_proxy_humidity","state":"18","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"humidity","friendly_name":"Bluetooth
+        Proxy Humidity"},"last_changed":"2023-07-19T17:58:02.473362+00:00","last_updated":"2023-07-19T17:58:02.473362+00:00","context":{"id":"01H5QMTHF9EM0TQSPFRKTN5TS0","parent_id":null,"user_id":null}}'
+    headers:
+      Content-Length:
+      - '376'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+      Server:
+      - Python/3.11 aiohttp/3.8.4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/weather.forecast_leigh_hackspace
+  response:
+    body:
+      string: "{\"entity_id\":\"weather.forecast_leigh_hackspace\",\"state\":\"partlycloudy\",\"attributes\":{\"temperature\":16.8,\"temperature_unit\":\"\xB0C\",\"humidity\":64,\"cloud_coverage\":32.0,\"pressure\":1016.1,\"pressure_unit\":\"hPa\",\"wind_bearing\":302.0,\"wind_speed\":13.17,\"wind_speed_unit\":\"mph\",\"visibility_unit\":\"mi\",\"precipitation_unit\":\"mm\",\"forecast\":[{\"condition\":\"partlycloudy\",\"datetime\":\"2023-07-19T11:00:00+00:00\",\"wind_bearing\":302.0,\"temperature\":16.8,\"templow\":12.2,\"wind_speed\":13.17,\"precipitation\":0.0,\"humidity\":64},{\"condition\":\"partlycloudy\",\"datetime\":\"2023-07-20T11:00:00+00:00\",\"wind_bearing\":292.7,\"temperature\":17.4,\"templow\":10.6,\"wind_speed\":12.3,\"precipitation\":0.1,\"humidity\":65},{\"condition\":\"rainy\",\"datetime\":\"2023-07-21T11:00:00+00:00\",\"wind_bearing\":297.2,\"temperature\":16.2,\"templow\":11.3,\"wind_speed\":12.99,\"precipitation\":1.2,\"humidity\":72},{\"condition\":\"rainy\",\"datetime\":\"2023-07-22T11:00:00+00:00\",\"wind_bearing\":179.9,\"temperature\":16.3,\"templow\":12.4,\"wind_speed\":13.42,\"precipitation\":16.9,\"humidity\":91},{\"condition\":\"rainy\",\"datetime\":\"2023-07-23T11:00:00+00:00\",\"wind_bearing\":192.6,\"temperature\":17.7,\"templow\":15.3,\"wind_speed\":8.95,\"precipitation\":18.1,\"humidity\":81},{\"condition\":\"partlycloudy\",\"datetime\":\"2023-07-24T11:00:00+00:00\",\"wind_bearing\":293.2,\"temperature\":16.4,\"templow\":12.1,\"wind_speed\":18.14,\"precipitation\":3.3,\"humidity\":67}],\"attribution\":\"Weather
+        forecast from met.no, delivered by the Norwegian Meteorological Institute.\",\"friendly_name\":\"Forecast
+        Leigh Hackspace\"},\"last_changed\":\"2023-07-19T17:50:10.488705+00:00\",\"last_updated\":\"2023-07-19T17:50:10.488705+00:00\",\"context\":{\"id\":\"01H5QMC4HR23E3ZM5Y909R094W\",\"parent_id\":null,\"user_id\":null}}"
+    headers:
+      Content-Length:
+      - '1687'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+      Server:
+      - Python/3.11 aiohttp/3.8.4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: http://10.3.1.30:9090/api/v1/query?query=gocardless_members_count%7B%7D
+  response:
+    body:
+      string: '{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"gocardless_members_count","instance":"apps1.int.leighhack.org:5002","job":"gocardless-membership-exporter"},"value":[1689790231.617,"21"]}]}}'
+    headers:
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '195'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 19 Jul 2023 18:10:31 GMT
+    status:
+      code: 200
+      message: OK
+version: 1

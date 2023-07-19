@@ -1,2 +1,31 @@
+[tool.poetry]
+name = "hackspace-api"
+version = "0.0.1"
+description = ""
+authors = ["Andrew Williams <andy@tensixtyone.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "hackspaceapi"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {version = "0.100.0", extras = ["all"]}
+requests = "2.31.0"
+cachetools = "^5.3.1"
+ics = "0.7.2"
+arrow = "1.2.3"
+prometheus-client = "0.17.1"
+prometheus-fastapi-instrumentator = "6.1.0"
+pydantic-settings = "2.0.2"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+spacedirectory = "^0.0.5"
+vcrpy = "^5.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.ruff]
 ignore = ["E501"]

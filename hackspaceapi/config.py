@@ -5,8 +5,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env")
 
     base_url: str = "http://localhost:8000"
-    prometheus_instance: str = "http://localhost:9090"
-    homeassistant_instance: str = "http://localhost:8123"
+    prometheus_instance: str = "http://prometheus:9090"
+    homeassistant_instance: str = "http://homeassistant:8123"
     homeassistant_token: str
 
     hackspace_name: str = "Leigh Hackspace"

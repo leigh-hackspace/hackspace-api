@@ -1,13 +1,8 @@
-from fastapi.testclient import TestClient
-from unittest import TestCase
+from hackspaceapi.tests.utils import FastAPIVCRTestCase, client
 from ics import Calendar
 
-from hackspaceapi.main import app
 
-client = TestClient(app)
-
-
-class EventsTestCase(TestCase):
+class EventsTestCase(FastAPIVCRTestCase):
     def test_events_json(self):
         response = client.get("/events/")
         assert response.status_code == 200

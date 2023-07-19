@@ -1,6 +1,5 @@
 .venv:
-	virtualenv .venv
+	poetry install
 
 tests: .venv
-	.venv/bin/pip install -r requirements.txt -r requirements-test.txt
-	.venv/bin/python -m pytest
+	HOMEASSISTANT_TOKEN='xxx' poetry run pytest
