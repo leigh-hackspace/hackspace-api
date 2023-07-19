@@ -39,7 +39,7 @@ class DoorsAuthTestCase(FastAPIVCRTestCase):
             json={
                 "door_id": "unit-test-door",
                 "uid": VALID_DOOR_TAG,
-                "groups": ["Members"],
+                "groups": ["Public"],
             },
         )
         assert response.status_code == 200

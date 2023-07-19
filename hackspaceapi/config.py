@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     authentik_instance: str = "http://localhost:9000"
     authentik_token: str
     authentik_uid_attribute: str = 'leighhack.org/door_access_uid'
+    authentik_user_path: str = 'users'
 
     hackspace_name: str = "Leigh Hackspace"
     hackspace_logo_url: str = "https://raw.githubusercontent.com/leigh-hackspace/logos-graphics-assets/master/logo/rose_logo.svg"

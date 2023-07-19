@@ -50,7 +50,7 @@ def return_fail(error_msg: str) -> JSONResponse:
 async def authenticate(auth: AuthRequest, background_tasks: BackgroundTasks):
     try:
         resp = session.get(
-            build_authentik_url("core/users/"),
+            build_authentik_url("core/users/"), params={'type': 'default', 'path': settings.authentik_user_path}
         )
     except (
         requests.exceptions.ConnectionError,
