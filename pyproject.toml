@@ -17,6 +17,7 @@ arrow = "1.2.3"
 prometheus-client = "0.17.1"
 prometheus-fastapi-instrumentator = "6.1.0"
 pydantic-settings = "2.0.2"
+poetry = "^1.5.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
