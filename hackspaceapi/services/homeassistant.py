@@ -28,7 +28,7 @@ def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
         if resp.ok:
             return resp.json()
     except requests.exceptions.RequestException as exc:
-        logging.error("Failed to call {0} - {1}".format(url, endpoint), exc)
+        logging.error("Failed to call {0} - {1}: {2}".format(url, endpoint, exc))
         pass
     return None
 
