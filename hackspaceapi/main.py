@@ -42,4 +42,4 @@ Instrumentator().instrument(app).expose(app)
     tags=["Health"],
 )
 def health():
-    return {"health": "ok", "versionn": VERSION}
+    return {"health": "ok", "version": "0.1.0"}
