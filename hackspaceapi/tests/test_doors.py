@@ -6,6 +6,9 @@ INVALID_DOOR_TAG = "ObviousInvalidTag"
 
 
 class DoorsAuthTestCase(FastAPIVCRTestCase):
+
+    cassette_name = "DoorsAuthTestCase.authentik_calls.yaml"
+
     def test_successful_tag_read(self):
         response = client.post(
             "/doors/auth", json={"door_id": "unit-test-door", "uid": VALID_DOOR_TAG}
