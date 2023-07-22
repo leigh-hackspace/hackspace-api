@@ -14,3 +14,6 @@ lint: .venv
 
 serve:
 	python3 -m poetry run uvicorn hackspaceapi.main:app --reload
+
+gen-settings:
+	PYTHONPATH="$PYTHONPATH:." HOMEASSISTANT_TOKEN='xxx' python3 tools/extract_settings.py
