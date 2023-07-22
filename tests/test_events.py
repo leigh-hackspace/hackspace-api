@@ -1,4 +1,4 @@
-from hackspaceapi.tests.utils import FastAPIVCRTestCase, client
+from tests.utils import FastAPIVCRTestCase, client
 from ics import Calendar, Geo
 from hackspaceapi.config import settings
 

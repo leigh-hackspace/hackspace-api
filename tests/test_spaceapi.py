@@ -1,4 +1,4 @@
-from hackspaceapi.tests.utils import FastAPIVCRTestCase, client
+from tests.utils import FastAPIVCRTestCase, client
 from spacedirectory.models.space import Space
 
 
