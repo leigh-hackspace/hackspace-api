@@ -20,11 +20,20 @@ prometheus-fastapi-instrumentator = "6.1.0"
 pydantic-settings = "2.0.2"
 poetry = "^1.5.1"
 
+[tool.poetry.group.test]
+optional = true
+
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
 spacedirectory = "^0.0.5"
 vcrpy = "^5.0.0"
 ruff = "^0.0.280"
+
+[tool.poetry.group.github]
+optional = true
+
+[tool.poetry.group.github.dependencies]
+pytest-github-actions-annotate-failures = "^0.2.0"
 
 [build-system]
 requires = ["poetry-core"]

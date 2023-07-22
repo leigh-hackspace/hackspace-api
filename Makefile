@@ -1,6 +1,6 @@
 .venv:
 	python3 -m pip install poetry
-	python3 -m poetry install
+	python3 -m poetry install --with test,github
 
 .PHONY: tests
 tests: .venv
