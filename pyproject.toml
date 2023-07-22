@@ -5,6 +5,7 @@ description = ""
 authors = ["Andrew Williams <andy@tensixtyone.com>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/leigh-hackspace/hackspace-api/"
 packages = [{include = "hackspaceapi"}]
 
 [tool.poetry.dependencies]
