@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from prometheus_client import make_asgi_app
 from prometheus_fastapi_instrumentator import Instrumentator
+from pydantic import BaseModel, Field
 
 from hackspaceapi import VERSION
 
@@ -36,10 +37,16 @@ app.mount("/metrics", metrics_app)
 # Add instrumentor for Prometheus
 Instrumentator().instrument(app).expose(app)
 
+
+class HealthResponse(BaseModel):
+    health: str = Field(description="State of the API", examples=["ok", "error"])
+    version: str = Field(description="Version of the API", examples=["0.1.0"])
+
+
 @app.get(
     "/health",
     description="Healthcheck endpoint to ensure the API is running correctly",
     tags=["Health"],
 )
-def health():
-    return {"health": "ok", "version": "0.1.0"}
+def health() -> HealthResponse:
+    return HealthResponse(health="ok", version=VERSION)
