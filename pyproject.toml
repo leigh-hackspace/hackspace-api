@@ -27,7 +27,7 @@ optional = true
 pytest = "^7.4.0"
 spacedirectory = "^0.0.5"
 vcrpy = "^5.0.0"
-ruff = "^0.0.284"
+ruff = "^0.0.285"
 
 [tool.poetry.group.github]
 optional = true
