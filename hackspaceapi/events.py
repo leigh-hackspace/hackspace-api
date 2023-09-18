@@ -34,10 +34,15 @@ def get_calendar_events(start: datetime, end: datetime, calendar: str) -> List:
     tags=["Events"],
 )
 async def get_events(
-    start: datetime | None = arrow.utcnow().datetime,
-    end: datetime | None = arrow.utcnow().shift(days=30).datetime,
+    start: datetime | None,
+    end: datetime | None,
     calendar: Literal["public", "members"] = "public",
 ):
+    if not start:
+        start = arrow.utcnow().datetime
+    if not end:
+        end = arrow.utcnow().shift(days=30).datetime
+
     return get_calendar_events(start, end, CalendarType[calendar])
 
 
@@ -47,10 +52,15 @@ async def get_events(
     tags=["Events"],
 )
 async def get_events_ics(
-    start: datetime | None = arrow.utcnow().datetime,
-    end: datetime | None = arrow.utcnow().shift(days=30).datetime,
+    start: datetime | None,
+    end: datetime | None,
     calendar: Literal["public", "members"] = "public",
 ):
+    if not start:
+        start = arrow.utcnow().datetime
+    if not end:
+        end = arrow.utcnow().shift(days=30).datetime
+
     data = get_calendar_events(start, end, CalendarType[calendar])
 
     cal = Calendar(creator="Hackspace API {0}".format(VERSION))
