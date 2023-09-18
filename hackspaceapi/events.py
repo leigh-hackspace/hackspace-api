@@ -34,8 +34,8 @@ def get_calendar_events(start: datetime, end: datetime, calendar: str) -> List:
     tags=["Events"],
 )
 async def get_events(
-    start: datetime | None,
-    end: datetime | None,
+    start: datetime | None = None,
+    end: datetime | None = None,
     calendar: Literal["public", "members"] = "public",
 ):
     if not start:
@@ -52,8 +52,8 @@ async def get_events(
     tags=["Events"],
 )
 async def get_events_ics(
-    start: datetime | None,
-    end: datetime | None,
+    start: datetime | None = None,
+    end: datetime | None = None,
     calendar: Literal["public", "members"] = "public",
 ):
     if not start:
