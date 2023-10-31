@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hackspace-api"
-version = "1.0.0"
+version = "1.1.2"
 description = ""
 authors = ["Andrew Williams <andy@tensixtyone.com>"]
 license = "MIT"
