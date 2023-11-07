@@ -20,7 +20,7 @@ HOMEASSISTANT_SENSORS = (
     ('weather.forecast_leigh_hackspace', 'Outside'),
     ('sensor.octoprint_current_state', '3D-1'),
     ('sensor.octoprint_current_state_2', '3D-3'),
-    ('sensor.octoprint_current_state_3', '3D-1'),
+    ('sensor.octoprint_current_state_3', '3D-2'),
 )
 
 # Prometheus queries to export to the Space API
