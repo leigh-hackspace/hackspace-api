@@ -17,7 +17,10 @@ HOMEASSISTANT_SENSORS = (
     ('sensor.gw_dhcp_leases_online', 'WiFi Clients'),
     ('sensor.bluetooth_proxy_temperature', 'Rack 1'),
     ('sensor.bluetooth_proxy_humidity', 'Rack 1'),
-    ('weather.forecast_leigh_hackspace', 'Outside')
+    ('weather.forecast_leigh_hackspace', 'Outside'),
+    ('sensor.octoprint_current_state', '3D-1'),
+    ('sensor.octoprint_current_state_2', '3D-3'),
+    ('sensor.octoprint_current_state_3', '3D-1'),
 )
 
 # Prometheus queries to export to the Space API
@@ -120,12 +123,30 @@ def get_sensors() -> dict:
                 state = 0
             else:
                 state = int(data['state'])
-            
+
             results['network_connections'].append({
                 'value': state,
                 'location': override_name or data['attributes']['friendly_name'],
                 'lastchange': int(arrow.get(data['last_changed']).timestamp()),
             })
+
+        # 3D printers - FIXME: need a better way to detect this!
+        if 'icon' in data['attributes'] and data['attributes']['icon'] == 'mdi:printer-3d':
+
+            if 'ext_3d_printers' not in results:
+                results['ext_3d_printers'] = []
+
+            if data['state'] == 'unavailable':
+                state = 'idle'
+            else:
+                state = data['state']
+
+            results['ext_3d_printers'].append({
+                'name': override_name or data['attributes']['friendly_name'].split()[0],
+                'state': state,
+                'lastchange': int(arrow.get(data['last_changed']).timestamp()),
+            })
+
 
     for query, name, sensor_type in PROMETHEUS_SENSORS:
         data = get_prometheus_metric(query)
