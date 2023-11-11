@@ -216,11 +216,11 @@ async def space_json():
         "links": get_links(),
         "issue_report_channels": ["email"],
         "membership_plans": [
-            {'name': 'Member', 'value': '25', 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Member+', 'value': '30', 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Concession', 'value': '18', 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Family', 'value': '40', 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Day Pass', 'value': '5', 'currency': 'GBP', 'billing_interval': 'daily'},
+            {'name': 'Member', 'value': 25, 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Member+', 'value': 30, 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Concession', 'value': 18, 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Family', 'value': 40, 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Day Pass', 'value': 5, 'currency': 'GBP', 'billing_interval': 'daily'},
         ]
     }
 
