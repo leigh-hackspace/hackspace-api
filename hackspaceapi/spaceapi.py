@@ -29,6 +29,7 @@ PROMETHEUS_SENSORS = (
     ('gocardless_members_count{}', 'Active Members', 'total_member_count'),
 )
 
+
 def get_state() -> dict:
     data = get_entity_state(settings.hackspace_open_entity)
     if data:
@@ -147,7 +148,6 @@ def get_sensors() -> dict:
                 'lastchange': int(arrow.get(data['last_changed']).timestamp()),
             })
 
-
     for query, name, sensor_type in PROMETHEUS_SENSORS:
         data = get_prometheus_metric(query)
         if not data or 'result' not in data or len(data['result']) == 0:
@@ -166,6 +166,16 @@ def get_sensors() -> dict:
 
     return results
 
+
+def get_links() -> list:
+    return [
+        {'name': 'Github', 'url': 'https://github.com/leigh-hackspace'},
+        {'name': 'Slack', 'url': 'https://join.slack.com/t/leighhack/shared_invite/enQtNDYzMjEyMDMxNDExLTE1MWY5N2IwMzdhMzQ0ZWFiNDkyNzJmMGM1ZmFkODcwMGM5ODFmYmI4MjhmM2JiMWEyY2E3NTRjMTQzMzljZWU'},
+        {'name': 'Discourse', 'url': 'https://discourse.leighhack.org/'},
+        {'name': 'Join Leigh Hackspace', 'url': 'https://leighhack.org/membership/'},
+    ]
+
+
 @spaceapi.get("/space.json", description='Returns a SpaceAPI JSON supporting v13 and v14 of the schema', tags=['SpaceAPI'])
 async def space_json():
     data = {
@@ -180,21 +190,38 @@ async def space_json():
             "lon": settings.hackspace_address_lon,
             "timezone": settings.hackspace_timezone,
         },
+        "spacefed": {
+            "spacenet": False,
+            "spacesaml": False,
+        },
+        "state": get_state(),
         "contact": {
             "email": "info@leighhack.org",
             "twitter": "@leigh_hackspace",
             "mastodon": "@leigh_hackspace@mastodon.social",
             "facebook": "https://www.facebook.com/groups/leighhackspace/",
+            "ext_instagram": "leighhackspace",
         },
-        "issue_report_channels": ["email"],
+        "sensors": get_sensors(),
         "feeds": {
+            "blog": {
+                "type": "rss",
+                "url": "https://leighhack.org/blog/index.xml",
+            },
             "calendar": {
                 "type": "ical",
                 "url": urljoin(settings.base_url, '/events.ics'),
             }
         },
-        "state": get_state(),
-        "sensors": get_sensors(),
+        "links": get_links(),
+        "issue_report_channels": ["email"],
+        "membership_plans": [
+            {'name': 'Member', 'value': '25', 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Member+', 'value': '30', 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Concession', 'value': '18', 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Family', 'value': '40', 'currency': 'GBP', 'billing_interval': 'monthly'},
+            {'name': 'Day Pass', 'value': '5', 'currency': 'GBP', 'billing_interval': 'daily'},
+        ]
     }
 
     return data
