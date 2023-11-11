@@ -176,6 +176,18 @@ def get_links() -> list:
     ]
 
 
+# TODO: replace with calls to the website data
+@ttl_cache(1800)
+def get_membership_plans() -> list:
+    return [
+        {'name': 'Member', 'value': 25, 'currency': 'GBP', 'billing_interval': 'monthly'},
+        {'name': 'Member+', 'value': 30, 'currency': 'GBP', 'billing_interval': 'monthly'},
+        {'name': 'Concession', 'value': 18, 'currency': 'GBP', 'billing_interval': 'monthly'},
+        {'name': 'Family', 'value': 40, 'currency': 'GBP', 'billing_interval': 'monthly'},
+        {'name': 'Day Pass', 'value': 5, 'currency': 'GBP', 'billing_interval': 'daily'},
+    ]
+
+
 @spaceapi.get("/space.json", description='Returns a SpaceAPI JSON supporting v13 and v14 of the schema', tags=['SpaceAPI'])
 async def space_json():
     data = {
@@ -211,13 +223,7 @@ async def space_json():
         },
         "links": get_links(),
         "issue_report_channels": ["email"],
-        "membership_plans": [
-            {'name': 'Member', 'value': 25, 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Member+', 'value': 30, 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Concession', 'value': 18, 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Family', 'value': 40, 'currency': 'GBP', 'billing_interval': 'monthly'},
-            {'name': 'Day Pass', 'value': 5, 'currency': 'GBP', 'billing_interval': 'daily'},
-        ]
+        "membership_plans": get_membership_plans(),
     }
 
     return data

@@ -40,7 +40,7 @@ Instrumentator().instrument(app).expose(app)
 
 class HealthResponse(BaseModel):
     health: str = Field(description="State of the API", examples=["ok", "error"])
-    version: str = Field(description="Version of the API", examples=["0.1.0"])
+    version: str = Field(description="Version of the API", examples=[VERSION])
 
 
 @app.get(
