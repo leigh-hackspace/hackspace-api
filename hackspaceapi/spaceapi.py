@@ -190,10 +190,6 @@ async def space_json():
             "lon": settings.hackspace_address_lon,
             "timezone": settings.hackspace_timezone,
         },
-        "spacefed": {
-            "spacenet": False,
-            "spacesaml": False,
-        },
         "state": get_state(),
         "contact": {
             "email": "info@leighhack.org",
