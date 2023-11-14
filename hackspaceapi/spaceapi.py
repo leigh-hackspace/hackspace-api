@@ -138,7 +138,7 @@ def get_sensors() -> dict:
                 results['ext_3d_printers'] = []
 
             if data['state'] == 'unavailable':
-                state = 'idle'
+                state = 'offline'
             else:
                 state = data['state']
 
