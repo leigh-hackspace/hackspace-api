@@ -209,6 +209,7 @@ async def space_json():
             "mastodon": "@leigh_hackspace@mastodon.social",
             "facebook": "https://www.facebook.com/groups/leighhackspace/",
             "ext_instagram": "leighhackspace",
+            "ext_slack": "leighhack.slack.com",
         },
         "sensors": get_sensors(),
         "feeds": {
@@ -224,6 +225,7 @@ async def space_json():
         "links": get_links(),
         "issue_report_channels": ["email"],
         "membership_plans": get_membership_plans(),
+        "ext_dabo": "Dabo!",
     }
 
     return data
