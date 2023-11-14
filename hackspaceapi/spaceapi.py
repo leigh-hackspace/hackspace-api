@@ -140,7 +140,7 @@ def get_sensors() -> dict:
             if data['state'] == 'unavailable':
                 state = 'offline'
             else:
-                state = data['state']
+                state = data['state'].lower()
 
             results['ext_3d_printers'].append({
                 'name': override_name or data['attributes']['friendly_name'].split()[0],
