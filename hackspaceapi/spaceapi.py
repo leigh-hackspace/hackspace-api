@@ -19,8 +19,8 @@ HOMEASSISTANT_SENSORS = (
     ('sensor.bluetooth_proxy_humidity', 'Rack 1'),
     ('weather.forecast_leigh_hackspace', 'Outside'),
     ('sensor.3d_1_current_state', '3D-1'),
-    ('sensor.3d_2_current_state_2', '3D-3'),
-    ('sensor.3d_3_current_state_3', '3D-2'),
+    ('sensor.3d_2_current_state', '3D-2'),
+    ('sensor.3d_3_current_state', '3D-3'),
 )
 
 # Prometheus queries to export to the Space API
