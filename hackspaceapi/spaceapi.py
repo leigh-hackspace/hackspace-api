@@ -8,6 +8,7 @@ from fastapi import APIRouter
 from .config import settings
 from .services.homeassistant import get_entity_state
 from .services.prometheus import get_prometheus_metric
+from .services.website import get_membership_data
 
 spaceapi = APIRouter()
 
@@ -176,16 +177,22 @@ def get_links() -> list:
     ]
 
 
-# TODO: replace with calls to the website data
-@ttl_cache(1800)
 def get_membership_plans() -> list:
-    return [
-        {'name': 'Member', 'value': 25, 'currency': 'GBP', 'billing_interval': 'monthly'},
-        {'name': 'Member+', 'value': 30, 'currency': 'GBP', 'billing_interval': 'monthly'},
-        {'name': 'Concession', 'value': 18, 'currency': 'GBP', 'billing_interval': 'monthly'},
-        {'name': 'Family', 'value': 40, 'currency': 'GBP', 'billing_interval': 'monthly'},
-        {'name': 'Day Pass', 'value': 5, 'currency': 'GBP', 'billing_interval': 'daily'},
-    ]
+    data = get_membership_data()
+
+    output = []
+    for plan in data:
+        if int(plan['value']) == 0:
+            continue
+        newplan = {}
+        for key in plan.keys():
+            if key not in ['name', 'value', 'currency', 'billing_interval']:
+                newplan['ext_{0}'.format(key)] = plan[key]
+            else:
+                newplan[key] = plan[key]
+
+        output.append(newplan)
+    return output
 
 
 @spaceapi.get("/space.json", description='Returns a SpaceAPI JSON supporting v13 and v14 of the schema', tags=['SpaceAPI'])
