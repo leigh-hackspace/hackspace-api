@@ -4,7 +4,6 @@ import requests
 from cachetools.func import ttl_cache
 from prometheus_client import Summary
 
-from hackspaceapi.config import settings
 
 website_metric_summary = Summary(
     "hackspaceapi_website_data_time", "Summary of calls to the Website data"
