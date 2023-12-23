@@ -1,5 +1,6 @@
-from tests.utils import FastAPIVCRTestCase, client
 from spacedirectory.models.space import Space
+
+from tests.utils import FastAPIVCRTestCase, client
 
 
 class SpaceAPINoNetworkTestCase(FastAPIVCRTestCase):

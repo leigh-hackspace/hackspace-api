@@ -1,9 +1,9 @@
 from fastapi.testclient import TestClient
 from vcr.unittest import VCRTestCase
+
 from hackspaceapi.main import app
 from hackspaceapi.services.homeassistant import call_homeassistant
 from hackspaceapi.services.prometheus import get_prometheus_metric
-
 
 client = TestClient(app)
 
