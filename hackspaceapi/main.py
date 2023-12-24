@@ -3,7 +3,7 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from prometheus_client import make_asgi_app
+from fastapi.responses import RedirectResponse
 from prometheus_fastapi_instrumentator import Instrumentator
 from pydantic import BaseModel, Field
 
@@ -41,6 +41,11 @@ Instrumentator().instrument(app).expose(app)
 class HealthResponse(BaseModel):
     health: str = Field(description="State of the API", examples=["ok", "error"])
     version: str = Field(description="Version of the API", examples=[VERSION])
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse("/docs")
 
 
 @app.get(
