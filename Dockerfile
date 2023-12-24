@@ -13,7 +13,7 @@ ENV PYTHONFAULTHANDLER=1 \
   PATH="$PATH:/runtime/bin" \
   PYTHONPATH="$PYTHONPATH:/runtime/lib/python3.11/site-packages" \
   # Versions:
-  POETRY_VERSION=1.5.1
+  POETRY_VERSION=1.7.1
 
 # System deps:
 RUN apk add build-base unzip wget python3-dev libffi-dev
