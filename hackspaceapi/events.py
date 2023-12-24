@@ -20,7 +20,9 @@ class CalendarType(str, Enum):
 
 
 def get_calendar_events(start: datetime, end: datetime, calendar: str) -> List:
-    data = call_homeassistant("/api/calendars/{0}".format(calendar.value), start=start, end=end)
+    data = call_homeassistant(
+        "/api/calendars/{0}".format(calendar.value), start=start, end=end
+    )
     if data:
         for event in data:
             event["calendar"] = calendar
@@ -78,7 +80,7 @@ async def get_events_ics(
             description=event["description"],
             uid=uid,
             location=settings.hackspace_address,
-            geo=(settings.hackspace_address_lat, settings.hackspace_address_lon)
+            geo=(settings.hackspace_address_lat, settings.hackspace_address_lon),
         )
         cal.events.add(evt)
 
