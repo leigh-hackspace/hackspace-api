@@ -17,7 +17,7 @@ class ServicesHomeassistantTestCase(FastAPIVCRTestCase):
 
         resp = get_entity_state(ENTITY)
 
-        assert resp == None
+        assert resp is None
 
 
 class ServicesPrometheusTestCase(FastAPIVCRTestCase):
