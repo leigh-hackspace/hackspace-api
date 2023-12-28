@@ -1,0 +1,30 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: http://10.3.1.30:9090/api/v1/query?query=gocardless_members_cxxount%7B%7D
+  response:
+    body:
+      string: '{"status":"success","data":{"resultType":"vector","result":[]}}'
+    headers:
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '87'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 28 Dec 2023 16:11:02 GMT
+    status:
+      code: 200
+      message: OK
+version: 1

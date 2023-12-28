@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://web-test.leighhack.org/membership/index.json
+  response:
+    body:
+      string: '{"memberships":[{"name":"Member","value":24,"currency":"GBP","billing_interval":"monthly","link":"https://pay.gocardless.com/AL00024VQTCKBK","description":"Our
+        standard membership that allows usage of the hackspace facilities."},{"name":"Member+","value":30,"currency":"GBP","billing_interval":"monthly","link":"https://pay.gocardless.com/AL00024VQW2FWQ","description":"Standard
+        membership with an additional donation."},{"name":"Concession","value":18,"currency":"GBP","billing_interval":"monthly","link":"https://pay.gocardless.com/AL0002BMN4S3AX","description":"A
+        subsidised membership for pensioners, students, and low income earners."},{"name":"Family","value":40,"currency":"GBP","billing_interval":"monthly","link":"https://pay.gocardless.com/AL000637J3VZP7","description":"A
+        discounted family membership for two adults and two children."},{"name":"Day
+        Pass","value":5,"currency":"GBP","billing_interval":"daily","link":"mailto:info@leighhack.org?subject=Day%20Pass","description":"Access
+        to the hackspace''s facilities for a day."},{"name":"Patron","value":5,"currency":"GBP","billing_interval":"monthly","link":"https://pay.gocardless.com/AL000FDGN4Q6AC","description":"Support
+        the hackspace without being a member."},{"name":"Business","value":0,"currency":"GBP","billing_interval":"monthly","link":"mailto:info@leighhack.org?subject=Corporate%20Membership","description":"Access
+        to the hackspace for a business or community group."},{"name":"Creator Pod","value":0,"currency":"GBP","billing_interval":"monthly","link":"mailto:info@leighhack.org?subject=Artist%20Pod%20Lease","description":"An
+        enhanced membership which includes a dedicated space for your personal use."}]}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '441'
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '584'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 28 Dec 2023 16:14:15 GMT
+      ETag:
+      - W/"656c658f-692"
+      Last-Modified:
+      - Sun, 03 Dec 2023 11:25:03 GMT
+      Server:
+      - GitHub.com
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Fastly-Request-ID:
+      - 47f714696182977fdb1e88003fffb8eec25ff579
+      X-GitHub-Request-Id:
+      - D16C:208613:C023E9:C3C3F9:658D6D79
+      X-Served-By:
+      - cache-lcy-eglc8600023-LCY
+      X-Timer:
+      - S1703780055.433643,VS0,VE3
+      expires:
+      - Thu, 28 Dec 2023 12:53:38 GMT
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+version: 1

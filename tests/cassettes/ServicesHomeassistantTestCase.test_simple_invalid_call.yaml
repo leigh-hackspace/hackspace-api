@@ -1,0 +1,30 @@
+interactions:
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/nope.nope
+  response:
+    body:
+      string: '{"message":"Entity not found."}'
+    headers:
+      Content-Length:
+      - '31'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 28 Dec 2023 16:01:51 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 404
+      message: Not Found
+version: 1

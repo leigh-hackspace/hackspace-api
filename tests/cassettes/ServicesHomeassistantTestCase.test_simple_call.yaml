@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: null
+    headers:
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/weather.forecast_leigh_hackspace
+  response:
+    body:
+      string: "{\"entity_id\":\"weather.forecast_leigh_hackspace\",\"state\":\"rainy\",\"attributes\":{\"temperature\":8.7,\"dew_point\":5.8,\"temperature_unit\":\"\xB0C\",\"humidity\":82,\"cloud_coverage\":53.1,\"pressure\":995.4,\"pressure_unit\":\"hPa\",\"wind_bearing\":245.9,\"wind_speed\":20.57,\"wind_speed_unit\":\"mph\",\"visibility_unit\":\"mi\",\"precipitation_unit\":\"mm\",\"forecast\":[{\"condition\":\"rainy\",\"datetime\":\"2023-12-28T12:00:00+00:00\",\"wind_bearing\":245.9,\"temperature\":8.7,\"templow\":7.0,\"wind_speed\":22.62,\"precipitation\":3.1,\"humidity\":82},{\"condition\":\"cloudy\",\"datetime\":\"2023-12-29T12:00:00+00:00\",\"wind_bearing\":257.6,\"temperature\":8.0,\"templow\":4.4,\"wind_speed\":23.92,\"precipitation\":2.4,\"humidity\":62},{\"condition\":\"rainy\",\"datetime\":\"2023-12-30T12:00:00+00:00\",\"wind_bearing\":160.0,\"temperature\":10.0,\"templow\":2.3,\"wind_speed\":25.97,\"precipitation\":18.5,\"humidity\":89},{\"condition\":\"rainy\",\"datetime\":\"2023-12-31T12:00:00+00:00\",\"wind_bearing\":174.9,\"temperature\":7.3,\"templow\":5.5,\"wind_speed\":15.22,\"precipitation\":8.5,\"humidity\":85},{\"condition\":\"partlycloudy\",\"datetime\":\"2024-01-01T12:00:00+00:00\",\"wind_bearing\":226.4,\"temperature\":6.7,\"templow\":2.0,\"wind_speed\":12.74,\"precipitation\":5.8,\"humidity\":78},{\"condition\":\"cloudy\",\"datetime\":\"2024-01-02T12:00:00+00:00\",\"wind_bearing\":220.6,\"temperature\":3.0,\"templow\":-1.1,\"wind_speed\":3.79,\"precipitation\":0.1,\"humidity\":94}],\"attribution\":\"Weather
+        forecast from met.no, delivered by the Norwegian Meteorological Institute.\",\"friendly_name\":\"Forecast
+        Leigh Hackspace\",\"supported_features\":3},\"last_changed\":\"2023-12-28T15:05:25.376963+00:00\",\"last_updated\":\"2023-12-28T15:05:25.376963+00:00\",\"context\":{\"id\":\"01HJRFAX4046AGSQ8KW6FC30DT\",\"parent_id\":null,\"user_id\":null}}"
+    headers:
+      Content-Length:
+      - '1695'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 28 Dec 2023 16:01:51 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
