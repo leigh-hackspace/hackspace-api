@@ -5,9 +5,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from prometheus_fastapi_instrumentator import Instrumentator
-from pydantic import BaseModel, Field
 
 from hackspaceapi import VERSION
+from hackspaceapi.models import HealthResponseModel
 
 from .events import events
 from .spaceapi import spaceapi
@@ -34,11 +34,6 @@ app.include_router(events)
 Instrumentator().instrument(app).expose(app, include_in_schema=False)
 
 
-class HealthResponse(BaseModel):
-    health: str = Field(description="State of the API", examples=["ok", "error"])
-    version: str = Field(description="Version of the API", examples=[VERSION])
-
-
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse("/docs")
@@ -49,5 +44,5 @@ def root():
     description="Healthcheck endpoint to ensure the API is running correctly",
     tags=["Health"],
 )
-def health() -> HealthResponse:
-    return HealthResponse(health="ok", version=VERSION)
+def health() -> HealthResponseModel:
+    return HealthResponseModel(health="ok", version=VERSION)
