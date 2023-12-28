@@ -25,7 +25,7 @@ class FastAPIVCRTestCase(VCRTestCase):
     def _get_vcr(self, **kwargs):
         myvcr = super(FastAPIVCRTestCase, self)._get_vcr(**kwargs)
         myvcr.ignore_localhost = True
-        myvcr.ignore_hosts = ["testserver"]
+        myvcr.ignore_hosts = ["testserver", "validator.spaceapi.io"]
         myvcr.filter_headers = ["Authorization"]
         myvcr.filter_query_parameters = ["start", "end"]
         myvcr.match_on = ["method", "scheme", "port", "path", "query"]
