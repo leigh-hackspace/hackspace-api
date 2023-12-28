@@ -42,12 +42,16 @@ class Settings(BaseSettings):
         description="Full address to the hackspace",
     )
 
+    hackspace_osm_node: int = Field(
+        default=4300807520, description="OpenStreetMap Node ID for the Hackspace's location"
+    )
+
     hackspace_address_lat: float = Field(
-        default=53.493012, description="Latitude of the hackspace"
+        default=53.493497, description="Latitude of the hackspace"
     )
 
     hackspace_address_lon: float = Field(
-        default=-2.493010, description="Longitude of the hackspace"
+        default=-2.493479, description="Longitude of the hackspace"
     )
 
     hackspace_timezone: str = Field(

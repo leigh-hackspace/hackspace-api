@@ -248,7 +248,7 @@ async def space_json():
             "lat": settings.hackspace_address_lat,
             "lon": settings.hackspace_address_lon,
             "timezone": settings.hackspace_timezone,
-            "ext_osm_node": 4300807520,
+            "ext_osm_node": settings.hackspace_osm_node,
         },
         "state": get_state(),
         "contact": {
