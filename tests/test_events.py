@@ -5,7 +5,6 @@ from tests.utils import FastAPIVCRTestCase, client
 
 
 class EventsTestCase(FastAPIVCRTestCase):
-
     cassette_name = "EventsTestCase.homeassistant_calendar.yaml"
 
     def test_events_json(self):
@@ -42,7 +41,7 @@ class EventsTestCase(FastAPIVCRTestCase):
     def test_valid_ics_event_contents(self):
         response = client.get("/events.ics")
         cal = Calendar(response.text)
-        
+
         assert len(cal.events) > 1
 
         for event in cal.events:
