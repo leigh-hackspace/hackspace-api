@@ -215,6 +215,8 @@ def get_links() -> list:
 
 def get_membership_plans() -> list:
     data = get_membership_data()
+    if not data:
+        return []
 
     output = []
     for plan in data:

@@ -1,4 +1,5 @@
 import logging
+from typing import Iterable, Optional
 
 import requests
 from cachetools.func import ttl_cache
@@ -12,7 +13,7 @@ website_metric_summary = Summary(
 
 @ttl_cache(ttl=1800)
 @website_metric_summary.time()
-def get_membership_data() -> list:
+def get_membership_data() -> Optional[Iterable]:
     url = "https://web-test.leighhack.org/membership/index.json"
     try:
         resp = requests.get(url)
@@ -22,4 +23,4 @@ def get_membership_data() -> list:
     except requests.exceptions.RequestException as exc:
         logging.error("Failed query Website data - {0}: {1}".format(url, exc))
         pass
-    return []
+    return None
