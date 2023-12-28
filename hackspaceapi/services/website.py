@@ -5,6 +5,9 @@ import requests
 from cachetools.func import ttl_cache
 from prometheus_client import Summary
 
+from hackspaceapi.services.session import get_requests_session
+
+session = get_requests_session()
 
 website_metric_summary = Summary(
     "hackspaceapi_website_data_time", "Summary of calls to the Website data"
@@ -16,7 +19,7 @@ website_metric_summary = Summary(
 def get_membership_data() -> Optional[Iterable]:
     url = "https://web-test.leighhack.org/membership/index.json"
     try:
-        resp = requests.get(url)
+        resp = session.get(url)
         if resp.ok:
             data = resp.json()
             return data["memberships"]

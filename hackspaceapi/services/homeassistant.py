@@ -7,14 +7,20 @@ from cachetools.func import ttl_cache
 from prometheus_client import Summary
 
 from hackspaceapi.config import settings
+from hackspaceapi.services.session import get_requests_session
 
-session = requests.session()
-session.headers = {
-    "Authorization": "Bearer {0}".format(settings.homeassistant_token),
-    "content-type": "application/json",
-}
+session = get_requests_session()
+session.headers.update(
+    {
+        "Authorization": "Bearer {0}".format(settings.homeassistant_token),
+        "content-type": "application/json",
+    }
+)
 
-call_homeassistant_metrics = Summary('hackspaceapi_homeassistant_api_time', 'Summary of calls to the Home Assistant API')
+call_homeassistant_metrics = Summary(
+    "hackspaceapi_homeassistant_api_time", "Summary of calls to the Home Assistant API"
+)
+
 
 @ttl_cache(ttl=60)
 @call_homeassistant_metrics.time()
