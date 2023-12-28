@@ -1,9 +1,11 @@
 from fastapi.testclient import TestClient
 from vcr.unittest import VCRTestCase
+import pytest
 
 from hackspaceapi.main import app
 from hackspaceapi.services.homeassistant import call_homeassistant
 from hackspaceapi.services.prometheus import get_prometheus_metric
+from hackspaceapi.services.website import get_membership_data
 
 client = TestClient(app)
 
@@ -14,6 +16,11 @@ class FastAPIVCRTestCase(VCRTestCase):
     """
 
     cassette_name = None
+
+    # Inject mocker for use in tests
+    @pytest.fixture(autouse=True)
+    def __inject_fixtures(self, mocker):
+        self.mocker = mocker
 
     def _get_vcr(self, **kwargs):
         myvcr = super(FastAPIVCRTestCase, self)._get_vcr(**kwargs)
@@ -34,3 +41,4 @@ class FastAPIVCRTestCase(VCRTestCase):
         super().tearDown()
         call_homeassistant.cache_clear()
         get_prometheus_metric.cache_clear()
+        get_membership_data.cache_clear()
