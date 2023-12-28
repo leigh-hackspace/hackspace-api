@@ -26,7 +26,7 @@ call_homeassistant_metrics = Summary(
 @call_homeassistant_metrics.time()
 def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
     """
-    Call a Homeassistant API endpoint and return the JSON if successful
+    Call a Home Assistant API endpoint and return the JSON if successful
     """
     url = urljoin(settings.homeassistant_instance, endpoint)
     try:
@@ -40,4 +40,7 @@ def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
 
 
 def get_entity_state(entity_id: str) -> Optional[Iterable]:
+    """
+    Call the configured Home Assistant API and retrieve the current state of a entity
+    """
     return call_homeassistant("/api/states/{0}".format(entity_id))

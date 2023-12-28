@@ -17,6 +17,10 @@ website_metric_summary = Summary(
 @ttl_cache(ttl=1800)
 @website_metric_summary.time()
 def get_membership_data() -> Optional[Iterable]:
+    """
+    Pull the JSON formatted membership plan data from the Leigh Hackspace
+    website.
+    """
     url = "https://web-test.leighhack.org/membership/index.json"
     try:
         resp = session.get(url)

@@ -12,7 +12,7 @@ from .services.website import get_membership_data
 
 spaceapi = APIRouter()
 
-# Homeassistant Sensors to export to the Space API
+# Home Assistant Sensors to export to the Space API
 # entity_id, override_name
 HOMEASSISTANT_SENSORS = (
     ("sensor.gw_dhcp_leases_online", "WiFi Clients"),
@@ -32,6 +32,9 @@ PROMETHEUS_SENSORS = (
 
 
 def get_state() -> dict:
+    """
+    Return the current open state of the Hackspace.
+    """
     data = get_entity_state(settings.hackspace_open_entity)
     if data:
         return {
@@ -39,7 +42,7 @@ def get_state() -> dict:
             "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
         }
 
-    # We didn't get a valid response from Homeassistant, assume we're closed
+    # We didn't get a valid response from Home Assistant, assume we're closed
     return {
         "open": False,
     }
@@ -47,6 +50,10 @@ def get_state() -> dict:
 
 @ttl_cache(ttl=60)
 def get_sensors() -> dict:
+    """
+    Query Home Assistant and Prometheus to build the 'sensors' section of the
+    SpaceAPI response.
+    """
     results = {}
     for sensor, override_name in HOMEASSISTANT_SENSORS:
         data = get_entity_state(sensor)
@@ -202,6 +209,9 @@ def get_sensors() -> dict:
 
 
 def get_links() -> list:
+    """
+    Return a list of links to add to the 'links' value of the SpaceAPI response.
+    """
     return [
         {"name": "Github", "url": "https://github.com/leigh-hackspace"},
         {
@@ -214,6 +224,9 @@ def get_links() -> list:
 
 
 def get_membership_plans() -> list:
+    """
+    Format the website membership plan data into a SpaceAPI compatible format.
+    """
     data = get_membership_data()
     if not data:
         return []

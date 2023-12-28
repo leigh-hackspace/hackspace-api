@@ -11,11 +11,18 @@ from hackspaceapi.services.session import get_requests_session
 
 session = get_requests_session()
 
-prometheus_metric_summary = Summary('hackspaceapi_prometheus_api_time', 'Summary of calls to the Prometheus API')
+prometheus_metric_summary = Summary(
+    "hackspaceapi_prometheus_api_time", "Summary of calls to the Prometheus API"
+)
+
 
 @ttl_cache(ttl=60)
 @prometheus_metric_summary.time()
 def get_prometheus_metric(query: str) -> Optional[Dict]:
+    """
+    Call the configured Prometheus endpoint with a query, and return the
+    resulting data if successful.
+    """
     url = urljoin(settings.prometheus_instance, "/api/v1/query")
     try:
         resp = session.get(url, params={"query": query})

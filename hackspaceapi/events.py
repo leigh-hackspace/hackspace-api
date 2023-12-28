@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import Enum
-from typing import List, Literal
+from typing import Iterable, Literal
 
 import arrow
 from fastapi import APIRouter, Response
@@ -19,7 +19,10 @@ class CalendarType(str, Enum):
     members = settings.hackspace_member_calendar
 
 
-def get_calendar_events(start: datetime, end: datetime, calendar: str) -> List:
+def get_calendar_events(start: datetime, end: datetime, calendar: str) -> Iterable:
+    """
+    Get a list of calendar events from Home Assistant via the API.
+    """
     data = call_homeassistant(
         "/api/calendars/{0}".format(calendar.value), start=start, end=end
     )
