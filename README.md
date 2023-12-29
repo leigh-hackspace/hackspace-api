@@ -22,6 +22,11 @@ An external-facing, FastAPI-based front-end for accessing some Leigh Hackspace d
 | `HACKSPACE_PUBLIC_CALENDAR` | `calendar.public_events`                                                                                | The entity ID of the Home Assistant public calendar            |
 | `HACKSPACE_MEMBER_CALENDAR` | `calendar.member_events`                                                                                | The entity ID of the Home Assistant member calendar            |
 | `SENSORS_PRESSURE_ENABLED`  | `False`                                                                                                 | Enable pressure sensors                                        |
+| `SENSOR_CONFIG_FILE`        | `sensors.yaml`                                                                                          | Path to the sensors configuration                              |  |
+
+### Sensor Config File
+
+An example can be found in [`sensors.yaml`](sensors.yaml), and the details of the schema they're using can be found in `hackspaceapi.models.sensors`.
 
 ## Endpoints
 
