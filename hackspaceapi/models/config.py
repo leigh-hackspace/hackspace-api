@@ -1,21 +1,24 @@
-from pydantic import Field
+from typing import Optional
+
+from pydantic import Field, AnyHttpUrl, HttpUrl, FilePath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from .sensors import SensorSettingsModel
 
-class Settings(BaseSettings):
+class SettingsModel(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env")
 
-    base_url: str = Field(
+    base_url: AnyHttpUrl = Field(
         default="http://localhost:8000",
         description="URL base where the application will be accessible at",
     )
 
-    prometheus_instance: str = Field(
+    prometheus_instance: AnyHttpUrl = Field(
         default="http://prometheus:9090",
         description="Endpoint URL for the Prometheus instance",
     )
 
-    homeassistant_instance: str = Field(
+    homeassistant_instance: AnyHttpUrl = Field(
         default="http://homeassistant:8123",
         description="Endpoint URL for the Home Assistant instance",
     )
@@ -28,12 +31,12 @@ class Settings(BaseSettings):
         default="Leigh Hackspace", description="Name of the hackspace"
     )
 
-    hackspace_logo_url: str = Field(
+    hackspace_logo_url: HttpUrl = Field(
         default="https://raw.githubusercontent.com/leigh-hackspace/logos-graphics-assets/master/logo/rose_logo.svg",
         description="URL to the logo for the hackspace",
     )
 
-    hackspace_website_url: str = Field(
+    hackspace_website_url: HttpUrl = Field(
         default="https://leighhack.org", description="URL to the hackspace's website"
     )
 
@@ -43,7 +46,8 @@ class Settings(BaseSettings):
     )
 
     hackspace_osm_node: int = Field(
-        default=4300807520, description="OpenStreetMap Node ID for the Hackspace's location"
+        default=4300807520,
+        description="OpenStreetMap Node ID for the Hackspace's location",
     )
 
     hackspace_address_lat: float = Field(
@@ -77,5 +81,11 @@ class Settings(BaseSettings):
         default=False, description="Enable pressure sensors"
     )
 
+    sensor_config_file: Optional[FilePath] = Field(
+        default="sensors.yaml", description="Path to the sensors configuration"
+    )
 
-settings = Settings()
+    sensor_config: Optional[SensorSettingsModel] = None
+
+
+settings = SettingsModel()

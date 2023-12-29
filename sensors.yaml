@@ -1,0 +1,35 @@
+homeassistant:
+  - entity: sensor.gw_dhcp_leases_online
+    location: WiFi Clients
+
+  - entity: sensor.bluetooth_proxy_temperature
+    location: Rack 1
+  - entity: sensor.bluetooth_proxy_humidity
+    location: Rack 1
+
+  - entity: sensor.pi_room_sensor_temperature
+    location: Pi Room
+  - entity: sensor.pi_room_sensor_humidity
+    location: Pi Room
+  - entity: sensor.pi_room_sensor_pressure
+    location: Pi Room
+
+  - entity: sensor.fabrication_sensor_temperature
+    location: Fabrication
+  - entity: sensor.fabrication_sensor_humidity
+    location: Fabrication
+
+  - entity: weather.forecast_leigh_hackspace
+    location: Outside
+
+  - entity: sensor.3d_1_current_state
+    location: 3D-1
+  - entity: sensor.3d_2_current_state
+    location: 3D-2
+  - entity: sensor.3d_3_current_state
+    location: 3D-3
+
+prometheus:
+  - query: gocardless_members_count{}
+    name: Active Members
+    sensor_type: total_member_count
