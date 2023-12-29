@@ -1,6 +1,6 @@
 from ics import Calendar, Geo
 
-from hackspaceapi.config import settings
+from hackspaceapi.models.config import settings
 from tests.utils import FastAPIVCRTestCase, client
 
 

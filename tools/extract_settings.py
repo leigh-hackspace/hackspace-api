@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from hackspaceapi.config import Settings
+from hackspaceapi.models.config import settings
 
 print("|Env Var|Default Value|Description|")
 print("|-|-|-|")

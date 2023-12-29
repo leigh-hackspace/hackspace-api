@@ -5,35 +5,13 @@ import arrow
 from cachetools.func import ttl_cache
 from fastapi import APIRouter
 
-from .config import settings
+from .models.config import settings
+from .models.sensors import SensorSettingsModel
 from .services.homeassistant import get_entity_state
 from .services.prometheus import get_prometheus_metric
 from .services.website import get_membership_data
 
 spaceapi = APIRouter()
-
-# Home Assistant Sensors to export to the Space API
-# entity_id, override_name
-HOMEASSISTANT_SENSORS = (
-    ("sensor.gw_dhcp_leases_online", "WiFi Clients"),
-    ("sensor.bluetooth_proxy_temperature", "Rack 1"),
-    ("sensor.bluetooth_proxy_humidity", "Rack 1"),
-    ("sensor.pi_room_sensor_temperature", "Pi Room"),
-    ("sensor.pi_room_sensor_humidity", "Pi Room"),
-    ("sensor.pi_room_sensor_pressure", "Pi Room"),
-    ("sensor.fabrication_sensor_temperature", "Fabrication"),
-    ("sensor.fabrication_sensor_humidity", "Fabrication"),
-    ("weather.forecast_leigh_hackspace", "Outside"),
-    ("sensor.3d_1_current_state", "3D-1"),
-    ("sensor.3d_2_current_state", "3D-2"),
-    ("sensor.3d_3_current_state", "3D-3"),
-)
-
-# Prometheus queries to export to the Space API
-# query, name, sensor type
-PROMETHEUS_SENSORS = (
-    ("gocardless_members_count{}", "Active Members", "total_member_count"),
-)
 
 
 def get_state() -> dict:
@@ -60,12 +38,17 @@ def get_sensors() -> dict:
     SpaceAPI response.
     """
     results = {}
-    for sensor, override_name in HOMEASSISTANT_SENSORS:
-        data = get_entity_state(sensor)
+
+    # Load the sensor config if its not initialized
+    if not settings.sensor_config:
+        settings.sensor_config = SensorSettingsModel.load_from_yaml(settings.sensor_config_file)
+
+    for sensor in settings.sensor_config.homeassistant:
+        data = get_entity_state(sensor.entity)
         if not data:
             logging.warning(
                 "Call for {0} sensor returned an empty result, skipping".format(
-                    override_name
+                    sensor.entity
                 )
             )
             continue
@@ -89,8 +72,8 @@ def get_sensors() -> dict:
             results["temperature"].append(
                 {
                     "value": value,
-                    "unit": unit_val,
-                    "location": override_name or data["attributes"]["friendly_name"],
+                    "unit": sensor.unit or unit_val,
+                    "location": sensor.location or data["attributes"]["friendly_name"],
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                 }
             )
@@ -114,8 +97,8 @@ def get_sensors() -> dict:
             results["humidity"].append(
                 {
                     "value": value,
-                    "unit": unit_val,
-                    "location": override_name or data["attributes"]["friendly_name"],
+                    "unit": sensor.unit or unit_val,
+                    "location": sensor.location or data["attributes"]["friendly_name"],
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                 }
             )
@@ -140,9 +123,8 @@ def get_sensors() -> dict:
                 results["barometer"].append(
                     {
                         "value": value,
-                        "unit": unit_val,
-                        "location": override_name
-                        or data["attributes"]["friendly_name"],
+                        "unit": sensor.unit or unit_val,
+                        "location": sensor.location or data["attributes"]["friendly_name"],
                         "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                     }
                 )
@@ -163,7 +145,7 @@ def get_sensors() -> dict:
             results["network_connections"].append(
                 {
                     "value": state,
-                    "location": override_name or data["attributes"]["friendly_name"],
+                    "location": sensor.location or data["attributes"]["friendly_name"],
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                 }
             )
@@ -183,29 +165,29 @@ def get_sensors() -> dict:
 
             results["ext_3d_printers"].append(
                 {
-                    "name": override_name
+                    "name": sensor.name or sensor.location
                     or data["attributes"]["friendly_name"].split()[0],
                     "state": state,
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                 }
             )
 
-    for query, name, sensor_type in PROMETHEUS_SENSORS:
-        data = get_prometheus_metric(query)
+    for sensor in settings.sensor_config.prometheus:
+        data = get_prometheus_metric(sensor.query)
         if not data or "result" not in data or len(data["result"]) == 0:
             logging.warning(
-                "Call for {0} sensor returned an empty result, skipping".format(name)
+                "Call for {0} sensor returned an empty result, skipping".format(sensor.name)
             )
             continue
 
-        if sensor_type not in results:
-            results[sensor_type] = []
+        if sensor.sensor_type not in results:
+            results[sensor.sensor_type] = []
 
-        if sensor_type == "total_member_count":
+        if sensor.sensor_type == "total_member_count":
             results["total_member_count"].append(
                 {
                     "value": int(data["result"][0]["value"][1]),
-                    "name": name,
+                    "name": sensor.name,
                     "lastchange": int(data["result"][0]["value"][0]),
                 }
             )
@@ -287,7 +269,7 @@ async def space_json():
             },
             "calendar": {
                 "type": "ical",
-                "url": urljoin(settings.base_url, "/events.ics"),
+                "url": urljoin(str(settings.base_url), "/events.ics"),
             },
         },
         "links": get_links(),

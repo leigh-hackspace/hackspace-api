@@ -8,7 +8,7 @@ from ics import Calendar, Event
 
 from hackspaceapi import VERSION
 
-from .config import settings
+from .models.config import settings
 from .services.homeassistant import call_homeassistant
 
 events = APIRouter()

@@ -6,7 +6,7 @@ import requests
 from cachetools.func import ttl_cache
 from prometheus_client import Summary
 
-from hackspaceapi.config import settings
+from hackspaceapi.models.config import settings
 from hackspaceapi.services.session import get_requests_session
 
 session = get_requests_session()
@@ -28,7 +28,7 @@ def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
     """
     Call a Home Assistant API endpoint and return the JSON if successful
     """
-    url = urljoin(settings.homeassistant_instance, endpoint)
+    url = urljoin(str(settings.homeassistant_instance), endpoint)
     try:
         resp = session.get(url, params=params)
         if resp.ok:

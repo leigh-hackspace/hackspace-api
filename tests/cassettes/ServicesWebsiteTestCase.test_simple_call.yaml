@@ -2,14 +2,8 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - HackspaceAPI/1.1.3
     method: GET
     uri: https://web-test.leighhack.org/membership/index.json
   response:
@@ -30,21 +24,19 @@ interactions:
       Access-Control-Allow-Origin:
       - '*'
       Age:
-      - '441'
+      - '41'
       Cache-Control:
       - max-age=600
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '584'
+      - '1682'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 28 Dec 2023 16:14:15 GMT
+      - Fri, 29 Dec 2023 14:31:54 GMT
       ETag:
-      - W/"656c658f-692"
+      - '"656c658f-692"'
       Last-Modified:
       - Sun, 03 Dec 2023 11:25:03 GMT
       Server:
@@ -58,15 +50,15 @@ interactions:
       X-Cache-Hits:
       - '1'
       X-Fastly-Request-ID:
-      - 47f714696182977fdb1e88003fffb8eec25ff579
+      - 7fdc401ad0f5e8378f1abd39bc4719206d38a9ce
       X-GitHub-Request-Id:
-      - D16C:208613:C023E9:C3C3F9:658D6D79
+      - 431E:77F5D:26C4F37:276DD4B:658ED831
       X-Served-By:
-      - cache-lcy-eglc8600023-LCY
+      - cache-lcy-eglc8600062-LCY
       X-Timer:
-      - S1703780055.433643,VS0,VE3
+      - S1703860315.558886,VS0,VE2
       expires:
-      - Thu, 28 Dec 2023 12:53:38 GMT
+      - Fri, 29 Dec 2023 14:41:13 GMT
       x-proxy-cache:
       - MISS
     status:

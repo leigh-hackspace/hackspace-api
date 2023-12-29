@@ -2,6 +2,8 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
@@ -9,14 +11,14 @@ interactions:
   response:
     body:
       string: '{"entity_id":"binary_sensor.hackspace_open_multi","state":"on","attributes":{"device_class":"opening","friendly_name":"Hackspace
-        Open?"},"last_changed":"2023-12-28T15:37:04.283405+00:00","last_updated":"2023-12-28T15:37:04.283405+00:00","context":{"id":"01HJRH4VGTK5QDHC9SQWFTQ7YK","parent_id":null,"user_id":null}}'
+        Open?"},"last_changed":"2023-12-29T11:12:21.412478+00:00","last_updated":"2023-12-29T11:12:21.412478+00:00","context":{"id":"01HJTMCVX3NKMFHY1FT6SYWEBM","parent_id":null,"user_id":null}}'
     headers:
       Content-Length:
       - '315'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:47 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -31,21 +33,23 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
     uri: http://10.3.1.30:8123/api/states/sensor.gw_dhcp_leases_online
   response:
     body:
-      string: '{"entity_id":"sensor.gw_dhcp_leases_online","state":"16","attributes":{"state_class":"measurement","unit_of_measurement":"clients","icon":"mdi:ip-network-outline","friendly_name":"gw
-        DHCP Leases Online"},"last_changed":"2023-12-28T15:38:20.420135+00:00","last_updated":"2023-12-28T15:38:20.420135+00:00","context":{"id":"01HJRH75W4Y58J73MRWVCXFKBY","parent_id":null,"user_id":null}}'
+      string: '{"entity_id":"sensor.gw_dhcp_leases_online","state":"21","attributes":{"state_class":"measurement","unit_of_measurement":"clients","icon":"mdi:ip-network-outline","friendly_name":"gw
+        DHCP Leases Online"},"last_changed":"2023-12-29T14:06:05.424325+00:00","last_updated":"2023-12-29T14:06:05.424325+00:00","context":{"id":"01HJTYAZKGCB8M2QM2YH1S9STA","parent_id":null,"user_id":null}}'
     headers:
       Content-Length:
       - '382'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:47 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -60,6 +64,8 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
@@ -67,14 +73,14 @@ interactions:
   response:
     body:
       string: "{\"entity_id\":\"sensor.bluetooth_proxy_temperature\",\"state\":\"16.0\",\"attributes\":{\"state_class\":\"measurement\",\"unit_of_measurement\":\"\xB0C\",\"device_class\":\"temperature\",\"friendly_name\":\"Bluetooth
-        Proxy Temperature\"},\"last_changed\":\"2023-12-28T15:38:53.345941+00:00\",\"last_updated\":\"2023-12-28T15:38:53.345941+00:00\",\"context\":{\"id\":\"01HJRH86116JE4YXBCQR9HNNA0\",\"parent_id\":null,\"user_id\":null}}"
+        Proxy Temperature\"},\"last_changed\":\"2023-12-29T14:25:54.028530+00:00\",\"last_updated\":\"2023-12-29T14:25:54.028530+00:00\",\"context\":{\"id\":\"01HJTZF8BCP5ETY0NJ5PREJPT8\",\"parent_id\":null,\"user_id\":null}}"
     headers:
       Content-Length:
       - '389'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:47 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -89,6 +95,8 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
@@ -96,14 +104,14 @@ interactions:
   response:
     body:
       string: '{"entity_id":"sensor.bluetooth_proxy_humidity","state":"23","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"humidity","friendly_name":"Bluetooth
-        Proxy Humidity"},"last_changed":"2023-12-28T15:38:53.346246+00:00","last_updated":"2023-12-28T15:38:53.346246+00:00","context":{"id":"01HJRH8612F1BHYEKAPCT17A85","parent_id":null,"user_id":null}}'
+        Proxy Humidity"},"last_changed":"2023-12-29T14:25:54.044332+00:00","last_updated":"2023-12-29T14:25:54.044332+00:00","context":{"id":"01HJTZF8BWZRTP7MWRZ3186RNF","parent_id":null,"user_id":null}}'
     headers:
       Content-Length:
       - '376'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:47 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -118,22 +126,179 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.pi_room_sensor_temperature
+  response:
+    body:
+      string: "{\"entity_id\":\"sensor.pi_room_sensor_temperature\",\"state\":\"17.96\",\"attributes\":{\"state_class\":\"measurement\",\"unit_of_measurement\":\"\xB0C\",\"device_class\":\"temperature\",\"friendly_name\":\"Pi
+        Room Sensor Temperature\"},\"last_changed\":\"2023-12-29T14:26:43.830875+00:00\",\"last_updated\":\"2023-12-29T14:26:43.830875+00:00\",\"context\":{\"id\":\"01HJTZGRZPXR44H176BE7K3XT3\",\"parent_id\":null,\"user_id\":null}}"
+    headers:
+      Content-Length:
+      - '388'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 29 Dec 2023 14:31:13 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.pi_room_sensor_humidity
+  response:
+    body:
+      string: '{"entity_id":"sensor.pi_room_sensor_humidity","state":"51.43","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"humidity","friendly_name":"Pi
+        Room Sensor Humidity"},"last_changed":"2023-12-29T14:26:43.835186+00:00","last_updated":"2023-12-29T14:26:43.835186+00:00","context":{"id":"01HJTZGRZVMKZ8C2SM3PZ87EX8","parent_id":null,"user_id":null}}'
+    headers:
+      Content-Length:
+      - '377'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 29 Dec 2023 14:31:13 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.pi_room_sensor_pressure
+  response:
+    body:
+      string: '{"entity_id":"sensor.pi_room_sensor_pressure","state":"996.5","attributes":{"state_class":"measurement","unit_of_measurement":"hPa","device_class":"atmospheric_pressure","friendly_name":"Pi
+        Room Sensor Atmospheric pressure"},"last_changed":"2023-12-29T14:26:43.839163+00:00","last_updated":"2023-12-29T14:26:43.839163+00:00","context":{"id":"01HJTZGRZZN2C5568YC2MH1W74","parent_id":null,"user_id":null}}'
+    headers:
+      Content-Length:
+      - '403'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 29 Dec 2023 14:31:13 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.fabrication_sensor_temperature
+  response:
+    body:
+      string: "{\"entity_id\":\"sensor.fabrication_sensor_temperature\",\"state\":\"13.35\",\"attributes\":{\"state_class\":\"measurement\",\"unit_of_measurement\":\"\xB0C\",\"device_class\":\"temperature\",\"friendly_name\":\"Fabrication
+        Sensor Temperature\"},\"last_changed\":\"2023-12-29T13:59:13.361741+00:00\",\"last_updated\":\"2023-12-29T13:59:13.361741+00:00\",\"context\":{\"id\":\"01HJTXYD6HKD0F8VNN5WB73785\",\"parent_id\":null,\"user_id\":null}}"
+    headers:
+      Content-Length:
+      - '396'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 29 Dec 2023 14:31:13 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
+      content-type:
+      - application/json
+    method: GET
+    uri: http://10.3.1.30:8123/api/states/sensor.fabrication_sensor_humidity
+  response:
+    body:
+      string: '{"entity_id":"sensor.fabrication_sensor_humidity","state":"64.66","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"humidity","friendly_name":"Fabrication
+        Sensor Humidity"},"last_changed":"2023-12-29T13:59:13.361499+00:00","last_updated":"2023-12-29T13:59:13.361499+00:00","context":{"id":"01HJTXYD6H46WC09VGHGDFCAWE","parent_id":null,"user_id":null}}'
+    headers:
+      Content-Length:
+      - '385'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 29 Dec 2023 14:31:13 GMT
+      Referrer-Policy:
+      - no-referrer
+      Server:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
     uri: http://10.3.1.30:8123/api/states/weather.forecast_leigh_hackspace
   response:
     body:
-      string: "{\"entity_id\":\"weather.forecast_leigh_hackspace\",\"state\":\"rainy\",\"attributes\":{\"temperature\":8.7,\"dew_point\":5.8,\"temperature_unit\":\"\xB0C\",\"humidity\":82,\"cloud_coverage\":53.1,\"pressure\":995.4,\"pressure_unit\":\"hPa\",\"wind_bearing\":245.9,\"wind_speed\":20.57,\"wind_speed_unit\":\"mph\",\"visibility_unit\":\"mi\",\"precipitation_unit\":\"mm\",\"forecast\":[{\"condition\":\"rainy\",\"datetime\":\"2023-12-28T12:00:00+00:00\",\"wind_bearing\":245.9,\"temperature\":8.7,\"templow\":7.0,\"wind_speed\":22.62,\"precipitation\":3.1,\"humidity\":82},{\"condition\":\"cloudy\",\"datetime\":\"2023-12-29T12:00:00+00:00\",\"wind_bearing\":257.6,\"temperature\":8.0,\"templow\":4.4,\"wind_speed\":23.92,\"precipitation\":2.4,\"humidity\":62},{\"condition\":\"rainy\",\"datetime\":\"2023-12-30T12:00:00+00:00\",\"wind_bearing\":160.0,\"temperature\":10.0,\"templow\":2.3,\"wind_speed\":25.97,\"precipitation\":18.5,\"humidity\":89},{\"condition\":\"rainy\",\"datetime\":\"2023-12-31T12:00:00+00:00\",\"wind_bearing\":174.9,\"temperature\":7.3,\"templow\":5.5,\"wind_speed\":15.22,\"precipitation\":8.5,\"humidity\":85},{\"condition\":\"partlycloudy\",\"datetime\":\"2024-01-01T12:00:00+00:00\",\"wind_bearing\":226.4,\"temperature\":6.7,\"templow\":2.0,\"wind_speed\":12.74,\"precipitation\":5.8,\"humidity\":78},{\"condition\":\"cloudy\",\"datetime\":\"2024-01-02T12:00:00+00:00\",\"wind_bearing\":220.6,\"temperature\":3.0,\"templow\":-1.1,\"wind_speed\":3.79,\"precipitation\":0.1,\"humidity\":94}],\"attribution\":\"Weather
+      string: "{\"entity_id\":\"weather.forecast_leigh_hackspace\",\"state\":\"rainy\",\"attributes\":{\"temperature\":6.8,\"dew_point\":2.9,\"temperature_unit\":\"\xB0C\",\"humidity\":76,\"cloud_coverage\":100.0,\"pressure\":1002.0,\"pressure_unit\":\"hPa\",\"wind_bearing\":253.9,\"wind_speed\":18.33,\"wind_speed_unit\":\"mph\",\"visibility_unit\":\"mi\",\"precipitation_unit\":\"mm\",\"forecast\":[{\"condition\":\"rainy\",\"datetime\":\"2023-12-29T12:00:00+00:00\",\"wind_bearing\":253.9,\"temperature\":6.8,\"templow\":4.2,\"wind_speed\":18.33,\"precipitation\":3.7,\"humidity\":76},{\"condition\":\"rainy\",\"datetime\":\"2023-12-30T12:00:00+00:00\",\"wind_bearing\":142.5,\"temperature\":9.0,\"templow\":3.3,\"wind_speed\":18.77,\"precipitation\":16.3,\"humidity\":92},{\"condition\":\"cloudy\",\"datetime\":\"2023-12-31T12:00:00+00:00\",\"wind_bearing\":172.5,\"temperature\":7.2,\"templow\":3.1,\"wind_speed\":10.75,\"precipitation\":6.9,\"humidity\":87},{\"condition\":\"partlycloudy\",\"datetime\":\"2024-01-01T12:00:00+00:00\",\"wind_bearing\":270.4,\"temperature\":6.0,\"templow\":3.4,\"wind_speed\":12.99,\"precipitation\":3.1,\"humidity\":89},{\"condition\":\"rainy\",\"datetime\":\"2024-01-02T12:00:00+00:00\",\"wind_bearing\":77.9,\"temperature\":5.5,\"templow\":2.7,\"wind_speed\":10.07,\"precipitation\":12.8,\"humidity\":94},{\"condition\":\"cloudy\",\"datetime\":\"2024-01-03T12:00:00+00:00\",\"wind_bearing\":208.2,\"temperature\":7.1,\"templow\":4.4,\"wind_speed\":9.38,\"precipitation\":5.7,\"humidity\":87}],\"attribution\":\"Weather
         forecast from met.no, delivered by the Norwegian Meteorological Institute.\",\"friendly_name\":\"Forecast
-        Leigh Hackspace\",\"supported_features\":3},\"last_changed\":\"2023-12-28T15:05:25.376963+00:00\",\"last_updated\":\"2023-12-28T15:05:25.376963+00:00\",\"context\":{\"id\":\"01HJRFAX4046AGSQ8KW6FC30DT\",\"parent_id\":null,\"user_id\":null}}"
+        Leigh Hackspace\",\"supported_features\":3},\"last_changed\":\"2023-12-29T13:29:25.170476+00:00\",\"last_updated\":\"2023-12-29T13:29:25.170476+00:00\",\"context\":{\"id\":\"01HJTW7TXJQVKN6K1HJ90MN3T4\",\"parent_id\":null,\"user_id\":null}}"
     headers:
       Content-Length:
       - '1695'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:47 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -148,6 +313,8 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
@@ -162,7 +329,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:47 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -177,21 +344,23 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
     uri: http://10.3.1.30:8123/api/states/sensor.3d_2_current_state
   response:
     body:
-      string: '{"entity_id":"sensor.3d_2_current_state","state":"unavailable","attributes":{"icon":"mdi:printer-3d","friendly_name":"3D-2
-        Current State"},"last_changed":"2023-12-20T11:53:25.221148+00:00","last_updated":"2023-12-20T11:53:25.221148+00:00","context":{"id":"01HJ3H5JZ538ZACDFBSK1K3Z2Q","parent_id":null,"user_id":null}}'
+      string: '{"entity_id":"sensor.3d_2_current_state","state":"Operational","attributes":{"icon":"mdi:printer-3d","friendly_name":"3D-2
+        Current State"},"last_changed":"2023-12-29T14:20:27.789065+00:00","last_updated":"2023-12-29T14:20:27.789065+00:00","context":{"id":"01HJTZ59RDSYD0ZTM363C46ZHX","parent_id":null,"user_id":null}}'
     headers:
       Content-Length:
       - '317'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:48 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -206,6 +375,8 @@ interactions:
 - request:
     body: null
     headers:
+      User-Agent:
+      - HackspaceAPI/1.1.3
       content-type:
       - application/json
     method: GET
@@ -213,14 +384,14 @@ interactions:
   response:
     body:
       string: '{"entity_id":"sensor.3d_3_current_state","state":"Operational","attributes":{"icon":"mdi:printer-3d","friendly_name":"3D-3
-        Current State"},"last_changed":"2023-12-20T11:53:25.361842+00:00","last_updated":"2023-12-20T11:53:25.361842+00:00","context":{"id":"01HJ3H5K3HKFTW09GXENDWJEW0","parent_id":null,"user_id":null}}'
+        Current State"},"last_changed":"2023-12-29T14:30:27.797705+00:00","last_updated":"2023-12-29T14:30:27.797705+00:00","context":{"id":"01HJTZQKPNH49AZ9B04D74AQBT","parent_id":null,"user_id":null}}'
     headers:
       Content-Length:
       - '317'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:48 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       Referrer-Policy:
       - no-referrer
       Server:
@@ -235,42 +406,28 @@ interactions:
 - request:
     body: null
     headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - HackspaceAPI/1.1.3
     method: GET
     uri: http://10.3.1.30:9090/api/v1/query?query=gocardless_members_count%7B%7D
   response:
     body:
-      string: '{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"gocardless_members_count","instance":"apps1.int.leighhack.org:5002","job":"gocardless-membership-exporter"},"value":[1703777988.168,"23"]}]}}'
+      string: '{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"gocardless_members_count","instance":"apps1.int.leighhack.org:5002","job":"gocardless-membership-exporter"},"value":[1703860273.350,"23"]}]}}'
     headers:
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '195'
+      - '224'
       Content-Type:
       - application/json
       Date:
-      - Thu, 28 Dec 2023 15:39:48 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
     status:
       code: 200
       message: OK
 - request:
     body: null
     headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
       User-Agent:
-      - python-requests/2.31.0
+      - HackspaceAPI/1.1.3
     method: GET
     uri: https://web-test.leighhack.org/membership/index.json
   response:
@@ -296,16 +453,14 @@ interactions:
       - max-age=600
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '584'
+      - '1682'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 28 Dec 2023 15:39:48 GMT
+      - Fri, 29 Dec 2023 14:31:13 GMT
       ETag:
-      - W/"656c658f-692"
+      - '"656c658f-692"'
       Last-Modified:
       - Sun, 03 Dec 2023 11:25:03 GMT
       Server:
@@ -315,19 +470,19 @@ interactions:
       Via:
       - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS
       X-Cache-Hits:
-      - '1'
+      - '0'
       X-Fastly-Request-ID:
-      - f11cdd1bd11e6e17f9cf4970edb1bf34b1fb5c30
+      - a149c0a1620ee9faf8b0e5867744ab0cc9f26f47
       X-GitHub-Request-Id:
-      - D16C:208613:C023E9:C3C3F9:658D6D79
+      - 431E:77F5D:26C4F37:276DD4B:658ED831
       X-Served-By:
-      - cache-lcy-eglc8600067-LCY
+      - cache-lcy-eglc8600061-LCY
       X-Timer:
-      - S1703777988.290376,VS0,VE116
+      - S1703860273.490735,VS0,VE116
       expires:
-      - Thu, 28 Dec 2023 12:53:38 GMT
+      - Fri, 29 Dec 2023 14:41:13 GMT
       x-proxy-cache:
       - MISS
     status:

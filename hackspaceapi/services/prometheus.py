@@ -6,7 +6,7 @@ import requests
 from cachetools.func import ttl_cache
 from prometheus_client import Summary
 
-from hackspaceapi.config import settings
+from hackspaceapi.models.config import settings
 from hackspaceapi.services.session import get_requests_session
 
 session = get_requests_session()
@@ -23,7 +23,7 @@ def get_prometheus_metric(query: str) -> Optional[Dict]:
     Call the configured Prometheus endpoint with a query, and return the
     resulting data if successful.
     """
-    url = urljoin(settings.prometheus_instance, "/api/v1/query")
+    url = urljoin(str(settings.prometheus_instance), "/api/v1/query")
     try:
         resp = session.get(url, params={"query": query})
         if resp.ok:
