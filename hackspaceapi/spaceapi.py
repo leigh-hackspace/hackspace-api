@@ -7,6 +7,7 @@ from fastapi import APIRouter
 
 from .models.config import settings
 from .models.sensors import SensorSettingsModel
+from .models.spaceapi.v14_lhs import SpaceAPIv14LHSModel
 from .services.homeassistant import get_entity_state
 from .services.prometheus import get_prometheus_metric
 from .services.website import get_membership_data
@@ -41,7 +42,9 @@ def get_sensors() -> dict:
 
     # Load the sensor config if its not initialized
     if not settings.sensor_config:
-        settings.sensor_config = SensorSettingsModel.load_from_yaml(settings.sensor_config_file)
+        settings.sensor_config = SensorSettingsModel.load_from_yaml(
+            settings.sensor_config_file
+        )
 
     for sensor in settings.sensor_config.homeassistant:
         data = get_entity_state(sensor.entity)
@@ -124,7 +127,8 @@ def get_sensors() -> dict:
                     {
                         "value": value,
                         "unit": sensor.unit or unit_val,
-                        "location": sensor.location or data["attributes"]["friendly_name"],
+                        "location": sensor.location
+                        or data["attributes"]["friendly_name"],
                         "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                     }
                 )
@@ -144,6 +148,7 @@ def get_sensors() -> dict:
 
             results["network_connections"].append(
                 {
+                    "type": "wifi",
                     "value": state,
                     "location": sensor.location or data["attributes"]["friendly_name"],
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
@@ -165,7 +170,8 @@ def get_sensors() -> dict:
 
             results["ext_3d_printers"].append(
                 {
-                    "name": sensor.name or sensor.location
+                    "name": sensor.name
+                    or sensor.location
                     or data["attributes"]["friendly_name"].split()[0],
                     "state": state,
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
@@ -176,7 +182,9 @@ def get_sensors() -> dict:
         data = get_prometheus_metric(sensor.query)
         if not data or "result" not in data or len(data["result"]) == 0:
             logging.warning(
-                "Call for {0} sensor returned an empty result, skipping".format(sensor.name)
+                "Call for {0} sensor returned an empty result, skipping".format(
+                    sensor.name
+                )
             )
             continue
 
@@ -224,7 +232,13 @@ def get_membership_plans() -> list:
             continue
         newplan = {}
         for key in plan.keys():
-            if key not in ["name", "value", "currency", "billing_interval"]:
+            if key not in [
+                "name",
+                "value",
+                "currency",
+                "billing_interval",
+                "description",
+            ]:
                 newplan["ext_{0}".format(key)] = plan[key]
             else:
                 newplan[key] = plan[key]
@@ -237,8 +251,10 @@ def get_membership_plans() -> list:
     "/space.json",
     description="Returns a SpaceAPI JSON supporting v13 and v14 of the schema",
     tags=["SpaceAPI"],
+    response_model=SpaceAPIv14LHSModel,
+    response_model_exclude_none=True,
 )
-async def space_json():
+async def space_json() -> SpaceAPIv14LHSModel:
     data = {
         "api": "0.13",
         "api_compatibility": ["14"],
