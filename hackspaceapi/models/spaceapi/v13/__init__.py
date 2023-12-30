@@ -1,3 +1,9 @@
+"""
+SpaceAPI v13 
+
+https://github.com/SpaceApi/schema
+"""
+
 from typing import List, Optional
 
 from pydantic import BaseModel, HttpUrl

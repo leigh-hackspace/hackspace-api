@@ -1,5 +1,7 @@
 from typing import Optional, List
+from enum import Enum
 from pydantic import BaseModel
+from pydantic_extra_types.mac_address import MacAddress
 
 
 class SpaceAPIv13BaseSensorModel(BaseModel):
@@ -9,18 +11,41 @@ class SpaceAPIv13BaseSensorModel(BaseModel):
     description: Optional[str] = None
 
 
+class TemperatureUnitEnum(str, Enum):
+    centigrade = "°C"
+    farenight = "°F"
+    kelvin = "K"
+    delisle = "°De"
+    newton = "°N"
+    rankine = "°R"
+    reaumur = "°Ré"
+    romer = "°Rø"
+
+
 class SpaceAPIv13TemperatureSensorModel(SpaceAPIv13BaseSensorModel):
-    unit: str
+    unit: TemperatureUnitEnum
     location: str
+
+
+class PressureUnitEnum(str, Enum):
+    hectopascal = "hPa"
 
 
 class SpaceAPIv13BarometerSensorModel(SpaceAPIv13BaseSensorModel):
-    unit: str
+    unit: PressureUnitEnum
     location: str
 
 
+class RadiationUnitEnum(str, Enum):
+    cpm = "cpm"
+    rh = "r/h"
+    usvh = "µSv/h"
+    msva = "mSv/a"
+    usva = "µSv/a"
+
+
 class SpaceAPIv13RadiationTypeSensorModel(SpaceAPIv13BaseSensorModel):
-    unit: str
+    unit: RadiationUnitEnum
     dead_time: Optional[float] = None
     conversion_factor: Optional[float] = None
 
@@ -32,38 +57,88 @@ class SpaceAPIv13RadiationSensorModel(SpaceAPIv13BaseSensorModel):
     beta_gamma: Optional[List[SpaceAPIv13RadiationTypeSensorModel]] = None
 
 
+class HumidityUnitEnum(str, Enum):
+    relative_percentage = "%"
+
+
 class SpaceAPIv13HumiditySensorModel(SpaceAPIv13BaseSensorModel):
-    unit: str = "%"
+    unit: HumidityUnitEnum
     location: str
 
 
+class BeverageUnitEnum(str, Enum):
+    bottle = "btl"
+    crate = "crt"
+
+
 class SpaceAPIv13BeverageSupplySensorModel(SpaceAPIv13BaseSensorModel):
-    unit: str = "btl"
+    unit: BeverageUnitEnum
+
+
+class PowerConsumptionUnitEnum(str, Enum):
+    millawatt = "mW"
+    watt = "W"
+    voltage_amps = "VA"
 
 
 class SpaceAPIv13PowerConsumptionSensorModel(SpaceAPIv13BaseSensorModel):
-    unit: str
+    unit: PowerConsumptionUnitEnum
 
 
-class SpaceAPIv13WindSensorPropertyModel(BaseModel):
+class WindSpeedUnitEnum(str, Enum):
+    meters = "m/s"
+    kilometers = "km/h"
+    knots = "kn"
+
+
+class SpaceAPIv13WindSpeedSensorPropertyModel(BaseModel):
     value: float
-    unit: str
+    unit: WindSpeedUnitEnum
+
+
+class WindDirectionUnitEnum(str, Enum):
+    degrees = "°"
+
+
+class SpaceAPIv13WindDirectionPropertyModel(BaseModel):
+    value: float
+    unit: WindDirectionUnitEnum
+
+
+class WindElevationUnitEnum(str, Enum):
+    meters = "m"
+
+
+class SpaceAPIv13WindElevationPropertyModel(BaseModel):
+    value: float
+    unit: WindElevationUnitEnum
 
 
 class SpaceAPIv13WindSensorPropertiesModel(BaseModel):
-    speed: SpaceAPIv13WindSensorPropertyModel
-    gust: SpaceAPIv13WindSensorPropertyModel
-    direction: SpaceAPIv13WindSensorPropertyModel
-    elevation: SpaceAPIv13WindSensorPropertyModel
+    speed: SpaceAPIv13WindSpeedSensorPropertyModel
+    gust: SpaceAPIv13WindSpeedSensorPropertyModel
+    direction: SpaceAPIv13WindDirectionPropertyModel
+    elevation: SpaceAPIv13WindElevationPropertyModel
 
 
 class SpaceAPIv13WindSensorModel(SpaceAPIv13BaseSensorModel):
     properties: SpaceAPIv13WindSensorPropertiesModel
 
 
+class NetworkConnectionTypeEnum(str, Enum):
+    wifi = "wifi"
+    cable = "cable"
+    spacenet = "spacenet"
+
+
+class SpaceAPIv13MachineModel(BaseModel):
+    name: Optional[str] = None
+    mac: MacAddress
+
+
 class SpaceAPIv13NetworkConnectionSensorModel(SpaceAPIv13BaseSensorModel):
-    type: str
-    machines: Optional[dict] = None
+    type: NetworkConnectionTypeEnum
+    machines: Optional[List[SpaceAPIv13MachineModel]] = None
 
 
 class SpaceAPIv13AccountBalanceSensorModel(SpaceAPIv13BaseSensorModel):

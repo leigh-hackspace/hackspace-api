@@ -1,5 +1,7 @@
 """
-Models covering v14 of the SpaceAPI. 
+SpaceAPI v14
+
+https://github.com/SpaceApi/schema
 
 Most models are inherited from v13, updated models have values overridden
 """
