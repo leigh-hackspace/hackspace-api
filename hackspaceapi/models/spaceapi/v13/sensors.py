@@ -12,8 +12,8 @@ class SpaceAPIv13BaseSensorModel(BaseModel):
 
 
 class TemperatureUnitEnum(str, Enum):
-    centigrade = "°C"
-    farenight = "°F"
+    celsius = "°C"
+    fahrenheit = "°F"
     kelvin = "K"
     delisle = "°De"
     newton = "°N"
