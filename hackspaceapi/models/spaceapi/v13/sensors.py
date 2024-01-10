@@ -58,7 +58,7 @@ class SpaceAPIv13RadiationSensorModel(SpaceAPIv13BaseSensorModel):
 
 
 class HumidityUnitEnum(str, Enum):
-    relative_percentage = "%"
+    relative_humidity = "%"
 
 
 class SpaceAPIv13HumiditySensorModel(SpaceAPIv13BaseSensorModel):
@@ -86,8 +86,8 @@ class SpaceAPIv13PowerConsumptionSensorModel(SpaceAPIv13BaseSensorModel):
 
 
 class WindSpeedUnitEnum(str, Enum):
-    meters = "m/s"
-    kilometers = "km/h"
+    meters_second = "m/s"
+    kilometers_hour = "km/h"
     knots = "kn"
 
 
