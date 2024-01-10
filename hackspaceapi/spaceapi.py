@@ -63,10 +63,18 @@ def get_sensors() -> dict:
 
             # Handle entities with temp attributes
             if "temperature" in data["attributes"]:
-                value = float(data["attributes"]["temperature"])
+                try:
+                    value = float(data["attributes"]["temperature"])
+                except ValueError:
+                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["attributes"]["temperature"], sensor.location or data["attributes"]["friendly_name"]))
+                    continue
                 unit_val = data["attributes"]["temperature_unit"]
             else:
-                value = float(data["state"])
+                try:
+                    value = float(data["state"])
+                except ValueError:
+                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["state"], sensor.location or data["attributes"]["friendly_name"]))
+                    continue
                 unit_val = data["attributes"]["unit_of_measurement"]
 
             results["temperature"].append(
@@ -91,7 +99,11 @@ def get_sensors() -> dict:
                 value = float(data["attributes"]["humidity"])
                 unit_val = "%"  # Humidity attributes generally don't have a unit value, assume %
             else:
-                value = float(data["state"])
+                try:
+                    value = float(data["state"])
+                except ValueError:
+                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["state"], sensor.location or data["attributes"]["friendly_name"]))
+                    continue
                 unit_val = data["attributes"]["unit_of_measurement"]
 
             results["humidity"].append(
