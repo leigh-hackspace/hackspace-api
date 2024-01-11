@@ -41,7 +41,7 @@ def root():
 
 @app.get(
     "/health",
-    description="Healthcheck endpoint to ensure the API is running correctly",
+    description="Health check endpoint to ensure the API is running correctly",
     tags=["Health"],
 )
 def health() -> HealthResponseModel:

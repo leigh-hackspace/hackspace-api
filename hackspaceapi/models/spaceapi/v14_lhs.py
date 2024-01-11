@@ -7,7 +7,12 @@ Leigh Hackspace modified version of the v14 SpaceAPI
 """
 from typing import Optional, List
 from pydantic import BaseModel
-from .v14 import SpaceAPIv14Model, SpaceAPIv14LocationModel, SpaceAPIv14SensorsModel, SpaceAPIv14MembershipPlanModel
+from .v14 import (
+    SpaceAPIv14Model,
+    SpaceAPIv14LocationModel,
+    SpaceAPIv14SensorsModel,
+    SpaceAPIv14MembershipPlanModel,
+)
 
 
 class SpaceAPIv14LHS3DPrinterSensorModel(BaseModel):
@@ -23,8 +28,10 @@ class SpaceAPIv14LHSSensorsModel(SpaceAPIv14SensorsModel):
 class SpaceAPIv14LHSLocationModel(SpaceAPIv14LocationModel):
     ext_osm_node: int
 
+
 class SpaceAPIv14LHSMembershipPlanModel(SpaceAPIv14MembershipPlanModel):
     ext_link: Optional[str] = None
+
 
 class SpaceAPIv14LHSModel(SpaceAPIv14Model):
     location: SpaceAPIv14LHSLocationModel
