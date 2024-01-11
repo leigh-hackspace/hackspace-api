@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hackspace-api"
-version = "1.2.0"
+version = "1.2.1"
 description = ""
 authors = ["Andrew Williams <andy@tensixtyone.com>"]
 license = "MIT"
@@ -10,7 +10,7 @@ packages = [{include = "hackspaceapi"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-fastapi = {version = "0.108.0", extras = ["all"]}
+fastapi = {version = "0.109.0", extras = ["all"]}
 requests = "2.31.0"
 cachetools = "^5.3.1"
 ics = "0.7.2"
