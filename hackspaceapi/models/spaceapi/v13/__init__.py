@@ -34,6 +34,7 @@ class SpaceAPIv13LocationModel(BaseModel):
 class SpaceAPIv13SpacefedModel(BaseModel):
     spacenet: bool = False
     spacesaml: bool = False
+    spacephone: bool = False
 
 
 class SpaceAPIv13KeymastersModel(BaseModel):
