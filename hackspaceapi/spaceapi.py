@@ -41,7 +41,9 @@ def get_sensors() -> dict:
 
     # Load the sensor config if its not initialized
     if not settings.sensor_config:
-        settings.sensor_config = SensorSettingsModel.load_from_yaml(settings.sensor_config_file)
+        settings.sensor_config = SensorSettingsModel.load_from_yaml(
+            settings.sensor_config_file
+        )
 
     for sensor in settings.sensor_config.homeassistant:
         data = get_entity_state(sensor.entity)
@@ -66,14 +68,24 @@ def get_sensors() -> dict:
                 try:
                     value = float(data["attributes"]["temperature"])
                 except ValueError:
-                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["attributes"]["temperature"], sensor.location or data["attributes"]["friendly_name"]))
+                    logging.warning(
+                        "Failed to convert '{0}' to float, so skipping sensor {1}".format(
+                            data["attributes"]["temperature"],
+                            sensor.location or data["attributes"]["friendly_name"],
+                        )
+                    )
                     continue
                 unit_val = data["attributes"]["temperature_unit"]
             else:
                 try:
                     value = float(data["state"])
                 except ValueError:
-                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["state"], sensor.location or data["attributes"]["friendly_name"]))
+                    logging.warning(
+                        "Failed to convert '{0}' to float, so skipping sensor {1}".format(
+                            data["state"],
+                            sensor.location or data["attributes"]["friendly_name"],
+                        )
+                    )
                     continue
                 unit_val = data["attributes"]["unit_of_measurement"]
 
@@ -102,7 +114,12 @@ def get_sensors() -> dict:
                 try:
                     value = float(data["state"])
                 except ValueError:
-                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["state"], sensor.location or data["attributes"]["friendly_name"]))
+                    logging.warning(
+                        "Failed to convert '{0}' to float, so skipping sensor {1}".format(
+                            data["state"],
+                            sensor.location or data["attributes"]["friendly_name"],
+                        )
+                    )
                     continue
                 unit_val = data["attributes"]["unit_of_measurement"]
 
@@ -136,7 +153,8 @@ def get_sensors() -> dict:
                     {
                         "value": value,
                         "unit": sensor.unit or unit_val,
-                        "location": sensor.location or data["attributes"]["friendly_name"],
+                        "location": sensor.location
+                        or data["attributes"]["friendly_name"],
                         "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
                     }
                 )
@@ -177,7 +195,8 @@ def get_sensors() -> dict:
 
             results["ext_3d_printers"].append(
                 {
-                    "name": sensor.name or sensor.location
+                    "name": sensor.name
+                    or sensor.location
                     or data["attributes"]["friendly_name"].split()[0],
                     "state": state,
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
@@ -188,7 +207,9 @@ def get_sensors() -> dict:
         data = get_prometheus_metric(sensor.query)
         if not data or "result" not in data or len(data["result"]) == 0:
             logging.warning(
-                "Call for {0} sensor returned an empty result, skipping".format(sensor.name)
+                "Call for {0} sensor returned an empty result, skipping".format(
+                    sensor.name
+                )
             )
             continue
 
@@ -247,6 +268,7 @@ def get_membership_plans() -> list:
 
 @spaceapi.get(
     "/space.json",
+    summary="Get Space API JSON",
     description="Returns a SpaceAPI JSON supporting v13 and v14 of the schema",
     tags=["SpaceAPI"],
 )

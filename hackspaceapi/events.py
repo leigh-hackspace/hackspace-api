@@ -35,6 +35,7 @@ def get_calendar_events(start: datetime, end: datetime, calendar: str) -> Iterab
 
 @events.get(
     "/events",
+    summary="Get upcoming events",
     description="Returns a list of upcoming events in a JSON format",
     tags=["Events"],
 )
@@ -53,6 +54,7 @@ async def get_events(
 
 @events.get(
     "/events.ics",
+    summary="Get upcoming events in iCal format",
     description="Returns a list of upcoming events in a iCal format",
     tags=["Events"],
 )
