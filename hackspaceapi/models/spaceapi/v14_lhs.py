@@ -9,10 +9,16 @@ from typing import Optional, List
 from pydantic import BaseModel
 from .v14 import (
     SpaceAPIv14Model,
+    SpaceAPIv14ContactModel,
     SpaceAPIv14LocationModel,
     SpaceAPIv14SensorsModel,
     SpaceAPIv14MembershipPlanModel,
 )
+
+
+class SpaceAPIv14LHSContactModel(SpaceAPIv14ContactModel):
+    ext_slack: Optional[str] = None
+    ext_instagram: Optional[str] = None
 
 
 class SpaceAPIv14LHS3DPrinterSensorModel(BaseModel):
@@ -35,6 +41,7 @@ class SpaceAPIv14LHSMembershipPlanModel(SpaceAPIv14MembershipPlanModel):
 
 class SpaceAPIv14LHSModel(SpaceAPIv14Model):
     location: SpaceAPIv14LHSLocationModel
+    contact: SpaceAPIv14LHSContactModel
     sensors: Optional[SpaceAPIv14LHSSensorsModel] = None
     membership_plans: Optional[List[SpaceAPIv14LHSMembershipPlanModel]] = None
     ext_dabo: str = "Dabo!"
