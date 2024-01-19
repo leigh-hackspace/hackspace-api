@@ -285,7 +285,7 @@ def get_membership_plans() -> list:
 async def space_json() -> SpaceAPIv14LHSModel:
     data = {
         "api": "0.13",
-        "api_compatibility": ["14"],
+        "api_compatibility": ["13", "14"],
         "space": settings.hackspace_name,
         "logo": settings.hackspace_logo_url,
         "url": settings.hackspace_website_url,
