@@ -79,7 +79,7 @@ class SpaceAPIv14SpacefedModel(BaseModel):
 class SpaceAPIv14Model(SpaceAPIv13Model):
     api_compatibility: List[str] = ["14"]
     location: SpaceAPIv14LocationModel
-    spacefed: SpaceAPIv14SpacefedModel
+    spacefed: Optional[SpaceAPIv14SpacefedModel] = None
     contact: SpaceAPIv14ContactModel
     sensors: SpaceAPIv14SensorsModel
     links: Optional[List[SpaceAPIv14LinkModel]] = None
