@@ -7,6 +7,7 @@ https://github.com/SpaceApi/schema
 from typing import List, Optional
 
 from pydantic import BaseModel, HttpUrl
+from pydantic_extra_types.coordinate import Latitude, Longitude
 
 from .sensors import (
     SpaceAPIv13BarometerSensorModel,
@@ -26,8 +27,8 @@ from .sensors import (
 
 class SpaceAPIv13LocationModel(BaseModel):
     address: Optional[str] = None
-    lat: float
-    lon: float
+    lat: Latitude
+    lon: Longitude
     timezone: Optional[str] = None
 
 
