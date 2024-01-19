@@ -69,14 +69,24 @@ def get_sensors() -> dict:
                 try:
                     value = float(data["attributes"]["temperature"])
                 except ValueError:
-                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["attributes"]["temperature"], sensor.location or data["attributes"]["friendly_name"]))
+                    logging.warning(
+                        "Failed to convert '{0}' to float, so skipping sensor {1}".format(
+                            data["attributes"]["temperature"],
+                            sensor.location or data["attributes"]["friendly_name"],
+                        )
+                    )
                     continue
                 unit_val = data["attributes"]["temperature_unit"]
             else:
                 try:
                     value = float(data["state"])
                 except ValueError:
-                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["state"], sensor.location or data["attributes"]["friendly_name"]))
+                    logging.warning(
+                        "Failed to convert '{0}' to float, so skipping sensor {1}".format(
+                            data["state"],
+                            sensor.location or data["attributes"]["friendly_name"],
+                        )
+                    )
                     continue
                 unit_val = data["attributes"]["unit_of_measurement"]
 
@@ -105,7 +115,12 @@ def get_sensors() -> dict:
                 try:
                     value = float(data["state"])
                 except ValueError:
-                    logging.warning("Failed to convert '{0}' to float, so skipping sensor {1}".format(data["state"], sensor.location or data["attributes"]["friendly_name"]))
+                    logging.warning(
+                        "Failed to convert '{0}' to float, so skipping sensor {1}".format(
+                            data["state"],
+                            sensor.location or data["attributes"]["friendly_name"],
+                        )
+                    )
                     continue
                 unit_val = data["attributes"]["unit_of_measurement"]
 
@@ -261,6 +276,7 @@ def get_membership_plans() -> list:
 
 @spaceapi.get(
     "/space.json",
+    summary="Get Space API JSON",
     description="Returns a SpaceAPI JSON supporting v13 and v14 of the schema",
     tags=["SpaceAPI"],
     response_model=SpaceAPIv14LHSModel,

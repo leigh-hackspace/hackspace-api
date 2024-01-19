@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from .sensors import SensorSettingsModel
 
+
 class SettingsModel(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env")
 
