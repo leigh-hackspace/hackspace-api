@@ -7,6 +7,7 @@ from fastapi import APIRouter
 
 from .models.config import settings
 from .models.sensors import SensorSettingsModel
+from .models.spaceapi.v14_lhs import SpaceAPIv14LHSModel
 from .services.homeassistant import get_entity_state
 from .services.prometheus import get_prometheus_metric
 from .services.website import get_membership_data
@@ -174,6 +175,7 @@ def get_sensors() -> dict:
 
             results["network_connections"].append(
                 {
+                    "type": "wifi",
                     "value": state,
                     "location": sensor.location or data["attributes"]["friendly_name"],
                     "lastchange": int(arrow.get(data["last_changed"]).timestamp()),
@@ -257,7 +259,13 @@ def get_membership_plans() -> list:
             continue
         newplan = {}
         for key in plan.keys():
-            if key not in ["name", "value", "currency", "billing_interval"]:
+            if key not in [
+                "name",
+                "value",
+                "currency",
+                "billing_interval",
+                "description",
+            ]:
                 newplan["ext_{0}".format(key)] = plan[key]
             else:
                 newplan[key] = plan[key]
@@ -271,11 +279,13 @@ def get_membership_plans() -> list:
     summary="Get Space API JSON",
     description="Returns a SpaceAPI JSON supporting v13 and v14 of the schema",
     tags=["SpaceAPI"],
+    response_model=SpaceAPIv14LHSModel,
+    response_model_exclude_none=True,
 )
-async def space_json():
+async def space_json() -> SpaceAPIv14LHSModel:
     data = {
         "api": "0.13",
-        "api_compatibility": ["14"],
+        "api_compatibility": ["13", "14"],
         "space": settings.hackspace_name,
         "logo": settings.hackspace_logo_url,
         "url": settings.hackspace_website_url,
