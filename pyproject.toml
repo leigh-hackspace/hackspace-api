@@ -27,7 +27,7 @@ optional = true
 [tool.poetry.group.test.dependencies]
 pytest = "^7.4.0"
 spacedirectory = "^0.0.5"
-vcrpy = "^5.0.0"
+vcrpy = "^6.0.0"
 ruff = "^0.1.9"
 pytest-mock = "^3.12.0"
 
