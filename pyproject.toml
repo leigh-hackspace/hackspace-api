@@ -25,7 +25,7 @@ pydantic-extra-types = "^2.3.0"
 optional = true
 
 [tool.poetry.group.test.dependencies]
-pytest = "^7.4.0"
+pytest = "^8.0.0"
 spacedirectory = "^0.0.5"
 vcrpy = "^6.0.0"
 ruff = "^0.1.9"
