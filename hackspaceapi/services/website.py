@@ -1,10 +1,12 @@
 import logging
 from typing import Iterable, Optional
+from urllib.parse import urljoin
 
 import requests
 from cachetools.func import ttl_cache
 from prometheus_client import Summary
 
+from hackspaceapi.models.config import settings
 from hackspaceapi.services.session import get_requests_session
 
 session = get_requests_session()
@@ -21,7 +23,7 @@ def get_membership_data() -> Optional[Iterable]:
     Pull the JSON formatted membership plan data from the Leigh Hackspace
     website.
     """
-    url = "https://web-test.leighhack.org/membership/index.json"
+    url = urljoin(settings.hackspace_website_url, "/membership/index.json")
     try:
         resp = session.get(url)
         if resp.ok:
