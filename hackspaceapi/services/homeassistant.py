@@ -30,7 +30,7 @@ def call_homeassistant(endpoint: str, **params) -> Optional[Iterable]:
     """
     url = urljoin(str(settings.homeassistant_instance), endpoint)
     try:
-        resp = session.get(url, params=params)
+        resp = session.get(url, params=params, timeout=5)
         if resp.ok:
             return resp.json()
     except requests.exceptions.RequestException as exc:

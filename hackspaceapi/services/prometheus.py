@@ -25,7 +25,7 @@ def get_prometheus_metric(query: str) -> Optional[Dict]:
     """
     url = urljoin(str(settings.prometheus_instance), "/api/v1/query")
     try:
-        resp = session.get(url, params={"query": query})
+        resp = session.get(url, params={"query": query}, timeout=5)
         if resp.ok:
             data = resp.json()
             if "status" in data and data["status"] == "success":

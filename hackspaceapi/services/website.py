@@ -25,7 +25,7 @@ def get_membership_data() -> Optional[Iterable]:
     """
     url = urljoin(str(settings.hackspace_website_url), "/membership/index.json")
     try:
-        resp = session.get(url)
+        resp = session.get(url, timeout=5)
         if resp.ok:
             data = resp.json()
             return data["memberships"]
