@@ -11,7 +11,7 @@ packages = [{include = "hackspaceapi"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = {version = "0.110.1", extras = ["all"]}
-requests = "2.31.0"
+requests = "2.32.2"
 cachetools = "^5.3.1"
 ics = "0.7.2"
 arrow = "1.3.0"
