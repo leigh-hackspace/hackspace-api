@@ -28,7 +28,7 @@ optional = true
 pytest = "^8.0.0"
 spacedirectory = "^0.0.5"
 vcrpy = "^6.0.0"
-ruff = "^0.4.0"
+ruff = "^0.8.0"
 pytest-mock = "^3.12.0"
 
 [tool.poetry.group.github]
